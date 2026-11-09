@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f4ee">
+  <meta name="description" content="一瓷一色一世界，上海博物馆藏明清颜色釉瓷器特展。按红、蓝、黄、白、青与其他，重看72张现场留影。">
+  <title>一瓷一色一世界 · 展览记录</title>
+  <link rel="icon" href="data:,">
+  <link rel="preload" as="image" href="assets/exhibition-poster.webp">
+  <link rel="stylesheet" href="../shared/exhibition-tools.css">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script>
+  <script defer src="../shared/exhibition-tools.js" data-exhibition-id="chinacolor" data-exhibition-title="一瓷一色一世界"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#gallery">跳到照片</a>
+  <header class="masthead">
+    <a class="archive-mark" href="../index.html">展览体验馆 <span>/ 留影 09</span></a>
+    <div class="header-end"><time datetime="2026-10-10">看展于 2026.10.10</time></div>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="exhibition-title">
+      <div class="intro-copy">
+        <p class="subtitle">上海博物馆藏明清颜色釉瓷器特展</p>
+        <h1 id="exhibition-title">一瓷一色<br>一世界<span class="title-colors" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></h1>
+        <p class="english-title" lang="en">Worlds Within a Glaze</p>
+        <p class="intro-note">把一场展览，<br>收进五种釉色里。</p>
+        <dl class="exhibition-meta">
+          <div><dt>展期</dt><dd>2026.07.18 至 2027.02.14</dd></div>
+          <div><dt>地点</dt><dd>上海久事美术馆 · 外滩1号3层</dd></div>
+          <div><dt>留影</dt><dd>72 张现场照片</dd></div>
+        </dl>
+        <div class="intro-actions"><a href="#gallery">开始观色 <span aria-hidden="true">↓</span></a><button id="foreword">读前言 <span aria-hidden="true">↗</span></button></div>
+      </div>
+      <figure class="poster">
+        <a href="assets/exhibition-poster.jpg" target="_blank" rel="noopener" aria-label="打开完整展览主视觉"><img src="assets/exhibition-poster.webp" width="1080" height="608" alt="一瓷一色一世界展览主视觉，红、蓝、黄、青、白五种釉色中的瓷器，展期2026年7月18日至2027年2月14日"></a>
+        <figcaption><span>展览主视觉</span><a href="https://www.shobserver.com/sgh/detail?id=4026733" target="_blank" rel="noopener">来源：上海博物馆 · 上观 ↗</a></figcaption>
+      </figure>
+    </section>
+    <section class="gallery" id="gallery" aria-label="按釉色浏览现场照片" data-tone="red">
+      <div class="archive-heading"><h2>以色观瓷</h2><button id="all-photos" aria-pressed="true">全部 <span>72</span></button></div>
+      <nav id="groups" aria-label="展陈分类"></nav>
+      <div class="chapter-heading"><div><p id="chapter-kicker">红 · 蓝 · 黄 · 白 · 青 · 其他</p><h3 id="chapter-title">这一场，留在照片里。</h3><p id="chapter-copy">从器物到釉面，从完整轮廓到细部，慢慢看。</p></div><button id="read-chapter">读红釉展文 ↗</button></div>
+      <div class="filmstrip" id="filmstrip" role="group" aria-label="选择照片"></div>
+      <figure class="current-photo">
+        <div class="photo-stage" id="photo-stage"><button class="photo-open" id="photo-open" aria-label="放大照片：红釉长颈瓶"><img id="photo" src="assets/photos/IMG_5404.webp" width="1800" height="2400" alt="红釉长颈瓶及同框展签"><span class="enlarge-hint">细看照片 ⤢</span></button></div>
+        <figcaption class="photo-caption"><div><p class="photo-reference" id="photo-reference">器物与展签 / IMG_5404</p><h3 id="photo-title">红釉长颈瓶</h3></div><div class="paging"><button id="previous" aria-label="上一张照片">←</button><p id="counter" aria-live="polite">02 <span>/ 72</span></p><button id="next" aria-label="下一张照片">→</button></div></figcaption>
+      </figure>
+      <p class="guide-note"><span>照片标题为观看索引；器物信息以现场展签为准。</span><span>← → 切换 · 点击大图细看</span></p>
+    </section>
+    <section class="afterword" aria-labelledby="about-title">
+      <div><h2 id="about-title">关于这次留影</h2><p>一件瓷器，一种釉色。上海博物馆与上海久事美术馆联合呈现50件明清颜色釉瓷器，以五个色彩篇章展开观看。</p><p>这份记录保留了2026年10月10日的72张现场照片，包含器物、细节、展文与现场。五色之外的照片收在“其他”中。</p><div class="source-links"><button id="source-foreword">查看现场前言 ↗</button><a href="https://www.shobserver.com/sgh/detail?id=4026733" target="_blank" rel="noopener">展览资料与主视觉来源 ↗</a></div></div>
+      <div id="feeling-slot"><p class="feeling-invitation">哪一种颜色，让你停留了更久？<button id="write-feeling">记下我的感受 ＋</button></p></div>
+    </section>
+  </main>
+  <footer class="page-footer"><span>一瓷一色一世界 · 一次观看的留影</span><a href="../gallery.html">全部展览 ↗</a></footer>
+  <dialog id="viewer" aria-labelledby="viewer-title">
+    <div class="image-viewport" id="image-viewport"><img id="full-image" alt="" draggable="false"></div>
+    <header class="viewer-header"><div><p id="viewer-reference"></p><h2 id="viewer-title"></h2></div><button id="viewer-close" autofocus>返回观看 <span aria-hidden="true">×</span></button></header>
+    <button id="viewer-prev" class="viewer-arrow prev" aria-label="上一张照片">←</button><button id="viewer-next" class="viewer-arrow next" aria-label="下一张照片">→</button>
+    <footer class="viewer-footer"><span class="zoom-hint">滚轮缩放 · 放大后拖动</span><div class="zoom-controls"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-reset" aria-label="重置缩放">100%</button><button id="zoom-in" aria-label="放大">＋</button></div><a id="original-link" target="_blank" rel="noopener">打开原图 ↗</a></footer>
+  </dialog>
+  <noscript><p>启用 JavaScript 可分类浏览全部照片。<a href="IMG_5350.JPG">查看前言</a> · <a href="assets/exhibition-poster.jpg">查看展览主视觉</a></p></noscript>
+</body>
+</html>

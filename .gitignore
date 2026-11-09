@@ -1,0 +1,26 @@
+# Local previews and generated inspection files
+*.log
+__pycache__/
+*.pyc
+.preview/
+.work/
+preview/
+_analysis/
+analysis/
+
+# These inspection images are displayed by the material exhibition
+!space3-material-fields/analysis/
+space3-material-fields/analysis/*
+!space3-material-fields/analysis/contact-sheet-[0-3].jpg
+!space3-material-fields/analysis/space02-floor-plan-reference.png
+
+# Promotion copy, publishing exports, and archives stay local
+/promotion-copy-v2/
+/promotion-copy-final/
+/promotion-images/
+*.zip
+/space5-heishui/公众号/
+/space5-heishui/小红书/
+/space6-ajiasha/展览记录_*
+/space9-chinacolor/公众号*
+/space9-chinacolor/build-gzh.py

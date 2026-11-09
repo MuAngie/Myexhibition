@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eaf0eb">
+  <meta name="description" content="将死亡带回生活。重访上海多伦现代美术馆的展览，在身体、记忆与日常的痕迹里，理解死亡，也重新理解生活。17张现场照片与1段影像。">
+  <title>将死亡带回生活 · 展览体验馆</title>
+  <link rel="icon" href="data:,">
+  <link rel="preload" as="image" href="assets/photos/IMG_5554.webp">
+  <link rel="stylesheet" href="../shared/exhibition-tools.css">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script>
+  <script defer src="../shared/exhibition-tools.js" data-exhibition-id="death" data-exhibition-title="将死亡带回生活"></script>
+  <script defer src="app.js"></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#gallery">跳到现场影像</a>
+  <header class="masthead">
+    <a class="brand" href="../index.html"><span aria-hidden="true">↶</span> 展览体验馆 <span class="brand-index">/ 10</span></a>
+    <nav aria-label="本场展览"><a href="#about">关于展览</a><a href="#gallery">重看现场</a><a href="#reflection">留给自己</a><a href="#reading">延伸阅读</a></nav>
+    <div id="feeling-trigger-slot"></div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="hero-kicker">上海多伦现代美术馆 · 上海站特展</p>
+        <h1 id="page-title"><span class="title-top">将<span class="death-word">死亡</span></span><span class="title-bottom">带回<span class="life-word">生活</span><svg class="return-arrow" viewBox="0 0 100 100" fill="none" aria-hidden="true"><path d="M20 79C-4 42 19 7 52 12c28 4 41 34 26 57M59 63l17 10 11-18"/></svg></span></h1>
+        <p class="english-title" lang="en">Bringing Death<br><span>Back into Life.</span></p>
+        <p class="hero-note">当我们愿意谈论死亡，<br>也开始重新看见生活。</p>
+        <a class="enter-link" href="#about">走进这场展览 <span aria-hidden="true">↓</span></a>
+        <div class="hero-record"><span>17 张照片 · 1 段影像</span><time datetime="2026-10-30">看展于 2026.10.30</time></div>
+      </div>
+      <figure class="hero-image">
+        <button data-show-media="5554" aria-label="细看《心跳》的现场照片"><img src="assets/photos/IMG_5554.webp" width="1800" height="2400" alt="暗展厅中，两具白色人形装置亮起微光，连线垂落至地面"></button>
+        <figcaption><span>张沐宸《心跳》 · 2026</span><span>现场留影 08 <span aria-hidden="true">↗</span></span></figcaption>
+      </figure>
+      <span class="hero-side-note" aria-hidden="true">关于离去，也关于此刻。</span>
+    </section>
+
+    <section class="about section-wrap" id="about" aria-labelledby="about-title">
+      <div class="about-heading"><p class="section-number">从一个问题开始</p><h2 id="about-title">死亡离我<br>有多远<span>？</span></h2><p class="wall-source">取自现场提问墙 · IMG_5559</p></div>
+      <div class="about-copy">
+        <p class="lead">衰老、亲人的离去、一次照护，<br>又或者，只是一场对话。</p>
+        <p>死亡以不同的方式走进生活。展览邀请我们把这个常被回避的话题带回日常，在艺术与真实经验之间，重新思考生命的有限、人与人的联系，以及如何度过仍在继续的今天。</p>
+        <p>从植物消逝的形体，到旧衣中显现的记忆，再到一阵可以被感知的心跳。这里的观看，始终与具体的生命相连。</p>
+        <p class="source-note">根据现场前言与作品说明整理。<button id="read-foreword">读前言原图 <span aria-hidden="true">↗</span></button></p>
+        <details class="exhibition-details"><summary>这场展览 <span aria-hidden="true">＋</span></summary><dl><div><dt>展名</dt><dd>将死亡带回生活</dd></div><div><dt>展期</dt><dd>2026.10.23 至 2026.12.06</dd></div><div><dt>地点</dt><dd>上海多伦现代美术馆<br>上海市虹口区多伦路 27 号</dd></div><div><dt>策展人</dt><dd>周雯静、岳明月</dd></div></dl><p class="source-note">以上信息来自现场海报 IMG_5547。</p></details>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="gallery" aria-labelledby="gallery-title" tabindex="-1">
+      <div class="section-wrap gallery-intro"><div><p class="section-number">照片、展文与现场片段</p><h2 id="gallery-title">重看现场</h2></div><p>不必急着找到答案。<br>从一张照片、一件日常之物开始。</p></div>
+      <div class="gallery-toolbar"><nav id="groups" aria-label="影像导览分组"></nav><div class="paging"><button id="previous" aria-label="上一件影像">←</button><p id="counter" aria-live="polite">01 <span>/ 18</span></p><button id="next" aria-label="下一件影像">→</button></div></div>
+      <div class="section-wrap gallery-layout">
+        <aside class="gallery-context"><p class="current-group" id="current-group">序言</p><h3 id="group-question">从说出死亡开始。</h3><p id="group-description"></p><div class="current-caption"><p id="media-reference">现场海报 / IMG_5547</p><h4 id="media-title">将死亡带回生活</h4><p id="media-note"></p><p id="media-info"></p><p id="media-source" class="source-note"></p></div><p class="keyboard-hint">← → 切换影像<br>点击照片，放大细看</p></aside>
+        <div class="media-browser">
+          <div id="filmstrip" class="filmstrip" role="group" aria-label="选择现场影像"></div>
+          <figure class="current-media">
+            <div class="media-stage" id="media-stage"><button id="photo-open" aria-label="放大当前照片"><img id="photo" src="assets/photos/IMG_5547.webp" width="1800" height="2400" alt="将死亡带回生活展览海报"><span class="enlarge-hint">细看 <span aria-hidden="true">⤢</span></span></button><video id="video" controls playsinline preload="metadata" poster="assets/video-poster.webp" hidden aria-label="展厅现场影像片段"><source src="reference/IMG_5557.MOV" type="video/mp4">此浏览器无法播放该视频，请打开原视频。</video></div>
+            <figcaption class="media-bottom"><p id="media-type-hint">完整保留现场构图</p><a id="media-original" href="reference/IMG_5547.JPG" target="_blank" rel="noopener">打开原片 <span aria-hidden="true">↗</span></a></figcaption>
+          </figure>
+          <p id="video-error" class="video-error" hidden>此浏览器无法播放原始 MOV。可以通过上方“打开原片”查看或保存现场视频。</p>
+          <p class="archive-note">四组导览为网页观看索引，沿拍摄顺序整理。作品名称与资料以现场展签为准；现场视频为拍摄片段。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="reflection section-wrap" id="reflection" aria-labelledby="reflection-title">
+      <figure class="reflection-image"><button data-show-media="5560" aria-label="细看观众留言墙"><img src="assets/photos/IMG_5560.webp" width="1800" height="2400" alt="淡紫色展墙上，一圈圈线条之间贴着黄色手写便签和彩色圆贴" loading="lazy"></button><figcaption>留在墙上的，是每个人不同的回答。<br><span>现场观众留言 · IMG_5560</span></figcaption></figure>
+      <div class="reflection-copy"><span class="reflection-loop" aria-hidden="true">↶</span><p class="section-number">离开展厅，回到生活</p><h2 id="reflection-title">此刻，<br>你想起了什么<span>？</span></h2><p>也许是一个人，一段共同度过的时间，<br>或是一件还想好好去做的小事。</p><p>可以把它记在这里，留给以后的自己。</p><button class="write-feeling" id="write-feeling">写下此刻的感受 <span aria-hidden="true">↗</span></button><p class="privacy-note">只保存在当前浏览器，供你自己重读。</p><div id="feeling-slot"></div></div>
+    </section>
+    <section class="reading-section section-wrap" id="reading" aria-labelledby="reading-title">
+      <header class="reading-header">
+        <div><p class="section-number">把观看延续到书页里</p><h2 id="reading-title">延伸阅读</h2></div>
+        <p>五本从故事、回忆与真实经历出发的书，<br>继续聊聊告别、照护，以及如何生活。</p>
+      </header>
+      <ol class="reading-list">
+        <li class="book-row">
+          <span class="book-number" aria-hidden="true">01</span>
+          <div class="book-heading"><p class="book-type">纪实 · 对话 <span class="book-first">建议先读</span></p><h3>相约星期二</h3><p class="book-author">米奇·阿尔博姆</p></div>
+          <div class="book-copy">
+            <p>作者每周二去探望身患绝症的老师，聊家庭、爱、衰老与死亡。篇幅不长，像坐在旁边听两个人谈心。</p>
+            <p class="book-reason">适合从这里开始，重新想想自己每天忙碌的事情，以及想留给重要的人的时间。</p>
+            <a href="https://www.mitchalbom.com/books/tuesdays-with-morrie/" target="_blank" rel="noopener" aria-label="查看《相约星期二》书籍介绍，在新标签页打开">书籍介绍 · 作者官网 <span aria-hidden="true">↗</span></a>
+          </div>
+        </li>
+        <li class="book-row">
+          <span class="book-number" aria-hidden="true">02</span>
+          <div class="book-heading"><p class="book-type">小说 · 童话</p><h3>天蓝色的彼岸</h3><p class="book-author">亚历克斯·希勒</p></div>
+          <div class="book-copy">
+            <p>一个意外离世的小男孩，因为挂念家人与朋友，重新返回人间。故事围绕那些没来得及说的道歉、感谢和告别展开。</p>
+            <p class="book-reason">语言轻巧，温柔中也有悲伤。适合想从一个简单的故事，慢慢走近这个话题的时候读。</p>
+            <a href="https://msiachild.org/blog/2021/tianlansedebian/" target="_blank" rel="noopener" aria-label="查看《天蓝色的彼岸》书籍介绍，在新标签页打开">书籍介绍 · 马来西亚儿童文学协会 <span aria-hidden="true">↗</span></a>
+          </div>
+        </li>
+        <li class="book-row">
+          <span class="book-number" aria-hidden="true">03</span>
+          <div class="book-heading"><p class="book-type">回忆录 · 生命经历</p><h3>当呼吸化为空气</h3><p class="book-author">保罗·卡拉尼什</p></div>
+          <div class="book-copy">
+            <p>一位神经外科医生患上肺癌后，以患者的身份重新面对工作、婚姻和成为父亲的选择，记录自己对余下生活的理解。</p>
+            <p class="book-reason">文字克制，情绪分量较重。适合想更贴近地理解，一个人知道时间有限以后，生活会发生什么变化。</p>
+            <a href="https://www.xinhuanet.com/politics/2016-12/17/c_129408372.htm" target="_blank" rel="noopener" aria-label="查看《当呼吸化为空气》书籍介绍，在新标签页打开">书籍介绍 · 新华网 <span aria-hidden="true">↗</span></a>
+          </div>
+        </li>
+        <li class="book-row">
+          <span class="book-number" aria-hidden="true">04</span>
+          <div class="book-heading"><p class="book-type">非虚构 · 衰老与照护</p><h3>最好的告别</h3><p class="book-author">阿图·葛文德</p></div>
+          <div class="book-copy">
+            <p>通过病人、老人和作者自己父亲的经历，讨论衰老、照护与生命最后阶段的选择，以及怎样让最后的岁月仍有自己的生活。</p>
+            <p class="book-reason">这五本里最贴近照护现实的一本。适合想理解父母变老、怎样陪伴家人的时候读。</p>
+            <a href="https://read.douban.com/ebook/24382585/" target="_blank" rel="noopener" aria-label="查看《最好的告别》书籍介绍，在新标签页打开">书籍介绍 · 豆瓣阅读 <span aria-hidden="true">↗</span></a>
+          </div>
+        </li>
+        <li class="book-row">
+          <span class="book-number" aria-hidden="true">05</span>
+          <div class="book-heading"><p class="book-type">散文 · 日常与怀念</p><h3>我与地坛</h3><p class="book-author">史铁生</p></div>
+          <div class="book-copy">
+            <p>从公园里的树木、身体的病痛与母亲的身影出发，把对生死的思考写进具体的生活经验里。</p>
+            <p class="book-reason">可以先读同名篇《我与地坛》和《秋天的怀念》，一篇一篇慢慢读，不必急着读完整本散文集。</p>
+            <a href="https://libm.nwupl.edu.cn/bookInfo_01h0263206.html" target="_blank" rel="noopener" aria-label="查看《我与地坛》书籍介绍，在新标签页打开">书籍介绍 · 图书馆书目 <span aria-hidden="true">↗</span></a>
+          </div>
+        </li>
+      </ol>
+      <p class="reading-note">这份书单是展览之后的阅读推荐。介绍链接在新标签页打开。</p>
+    </section>
+  </main>
+  <footer class="page-footer"><a href="../index.html">← 回到展览体验馆</a><p>将死亡带回生活 <span>/ 一次观看的留影</span></p><a href="#top" id="back-top">回到开头 ↑</a></footer>
+
+  <dialog id="viewer" aria-labelledby="viewer-title"><div class="image-viewport" id="image-viewport"><img id="full-image" alt="" draggable="false"></div><header class="viewer-header"><div><p id="viewer-reference"></p><h2 id="viewer-title"></h2></div><button id="viewer-close" autofocus>返回观看 <span aria-hidden="true">×</span></button></header><button id="viewer-prev" class="viewer-arrow prev" aria-label="上一张照片">←</button><button id="viewer-next" class="viewer-arrow next" aria-label="下一张照片">→</button><footer class="viewer-footer"><span class="zoom-hint">滚轮缩放 · 放大后拖动</span><div class="zoom-controls"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-reset" aria-label="重置缩放">100%</button><button id="zoom-in" aria-label="放大">＋</button></div><a id="original-link" target="_blank" rel="noopener">打开原图 ↗</a></footer></dialog>
+  <noscript><p class="noscript">启用 JavaScript 可浏览全部现场影像。也可以直接<a href="reference/IMG_5549.JPG">阅读前言</a>、<a href="reference/IMG_5557.MOV">打开现场视频</a>或<a href="../gallery.html">回到展览墙</a>。</p></noscript>
+</body>
+</html>

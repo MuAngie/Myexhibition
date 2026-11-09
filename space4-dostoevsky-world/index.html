@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>陀思妥耶夫斯基的世界 · 展览记忆</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/exhibition-tools.css">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="../space1-blue-sketch/vendor/three.min.js"></script>
+  <script defer src="assets.js"></script>
+  <script defer src="assets/embedded-textures.js"></script>
+  <script defer src="app.js?v=offline-1"></script>
+</head>
+<body>
+  <main id="scene" tabindex="0" aria-label="五个展览空间，拖拽环顾，WASD 或方向键移动，滚轮向上前进"></main>
+  <div class="shade" aria-hidden="true"></div>
+  <section id="intro" aria-labelledby="intro-title">
+    <img class="intro-photo" src="assets/photos/IMG_3667.jpg" alt="陀思妥耶夫斯基的世界展览入口">
+    <div class="intro-copy">
+      <p class="eyebrow">展览记忆 / 04</p>
+      <h1 id="intro-title">陀思妥耶夫斯基<br>的世界</h1>
+      <p class="intro-sub">循着五种颜色，回到展柜前。</p>
+      <div class="color-route" aria-label="绿、灰、蓝、红、黄"><i></i><i></i><i></i><i></i><i></i></div>
+      <button id="enter" disabled>正在准备展厅…</button>
+      <button id="prologue" class="text-button">入场时的四张照片 ↗</button>
+      <button id="author-intro" class="text-button">认识作者 ↗</button>
+      <p class="intro-note">鼠标与键盘漫游 · 点击展品靠近，再次点击细看</p>
+    </div>
+  </section>
+  <div id="hud" hidden>
+    <header class="identity"><p>陀思妥耶夫斯基的世界</p><h2 id="zone-title">01 / 绿</h2><span id="zone-description">童年与早期作品</span></header>
+    <nav id="zones" aria-label="选择展区"></nav>
+    <div class="top-actions"><button id="author-open">作者介绍 ↗</button><button id="room-photos">现场照片 ↗</button><button id="catalog-toggle" aria-expanded="false">本区展品</button></div>
+    <aside id="catalog" hidden><header><h3>本区展品</h3><button id="catalog-close">收起</button></header><p>选择一件，回到它的展柜前。</p><div id="catalog-list"></div></aside>
+    <div id="optical-entry" hidden><span>在同一个位置停留</span><button id="optical-open">人物光影 · 八张连看 ↗</button></div>
+    <div class="bottom-left"><p id="hover-hint" aria-live="polite">拖拽环顾 · 滚轮向上前进 / 向下后退</p><div><button id="previous-work">← 上一件</button><button id="next-work">下一件 →</button><button id="open-current" hidden>查看大图 ↗</button><button id="reset">回到本区入口</button></div></div>
+    <button id="next-zone" class="next-zone">走向灰区 →</button>
+    <span class="keyboard-hint">W A S D / 方向键移动</span>
+  </div>
+  <dialog id="author-guide" aria-labelledby="author-guide-title">
+    <header class="author-guide-top"><span id="author-guide-title">作者导览 · 陀思妥耶夫斯基</span><button id="author-close">返回展览 ×</button></header>
+    <iframe id="author-frame" title="陀思妥耶夫斯基作者介绍" data-src="dostoevsky_intro.html"></iframe>
+  </dialog>
+  <dialog id="viewer" aria-labelledby="viewer-title">
+    <div id="image-viewport"><img id="full-image" alt=""></div>
+    <header class="viewer-top"><span id="viewer-kind">展品细看</span><button id="viewer-close">返回展厅 ×</button></header>
+    <button id="image-prev" class="image-arrow previous" aria-label="上一张照片">←</button>
+    <button id="image-next" class="image-arrow next" aria-label="下一张照片">→</button>
+    <div class="zoom-controls"><button id="zoom-out" aria-label="缩小">−</button><span id="zoom-level">100%</span><button id="zoom-in" aria-label="放大">＋</button><button id="zoom-reset">复位</button></div>
+    <section class="viewer-info"><p id="image-count"></p><h2 id="viewer-title"></h2><p id="viewer-caption"></p><div class="viewer-links"><a id="original-link" target="_blank" rel="noopener">打开原始照片 ↗</a></div><details id="thoughts"><summary>我的想法 ＋</summary><label class="sr-only" for="thought-input">关于当前作品的想法</label><textarea id="thought-input" rows="3" placeholder="在这里，记下自己的感受。"></textarea><small id="thought-status">仅保存在此浏览器</small></details></section>
+    <div id="sequence-dots" aria-label="选择照片"></div>
+  </dialog>
+  <p id="failure" hidden>展厅暂时无法加载，请刷新页面重试。也可以通过“入场时的四张照片”查看现场。</p>
+  <script defer src="../shared/exhibition-tools.js?v=20261001-home" data-exhibition-id="dostoevsky-world" data-exhibition-title="陀思妥耶夫斯基的世界" data-feelings="contextual" data-feeling-storage-key="space4-artwork-thoughts-v1" data-feeling-storage-format="flat"></script>
+</body>
+</html>

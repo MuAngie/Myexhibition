@@ -1,0 +1,52 @@
+{
+  "source": "reference/IMG_5557.MOV",
+  "container": "QuickTime MOV",
+  "codec": "H.264 (avc1)",
+  "width": 1920,
+  "height": 1440,
+  "rotationDegrees": 0,
+  "durationSeconds": 2.62,
+  "tracks": [
+    {
+      "type": "vide",
+      "codec": "avc1",
+      "durationSeconds": 2.6883,
+      "width": 1920,
+      "height": 1440,
+      "rotationDegrees": 0,
+      "transformMatrix": [
+        65536,
+        0,
+        0,
+        0,
+        65536,
+        0,
+        0,
+        0,
+        1073741824
+      ]
+    },
+    {
+      "type": "soun",
+      "codec": "lpcm",
+      "durationSeconds": 2.6875
+    },
+    {
+      "type": "meta",
+      "codec": "mebx",
+      "durationSeconds": 2.6883
+    },
+    {
+      "type": "meta",
+      "codec": "mebx",
+      "durationSeconds": 2.6883
+    },
+    {
+      "type": "meta",
+      "codec": "mebx",
+      "durationSeconds": 0.0017
+    }
+  ],
+  "bytes": 4937148,
+  "transcoded": false
+}

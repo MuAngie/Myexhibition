@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211e19">
+  <meta name="description" content="永不消失的黑水城。循着现场照片，重看大漠遗城、文字、壁画与信仰。">
+  <title>永不消失的黑水城 · 展览记忆</title>
+  <link rel="icon" href="data:,">
+  <link rel="preload" as="image" href="assets/photos/IMG_4952.webp">
+  <link rel="stylesheet" href="../shared/exhibition-tools.css">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script>
+  <script defer src="../shared/exhibition-tools.js?v=20261001-home" data-exhibition-id="heishui" data-exhibition-title="永不消失的黑水城"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true"><img id="backdrop" src="assets/photos/IMG_4952.webp" alt=""></div>
+  <header class="masthead"><button id="home" aria-label="返回黑水城序厅">黑水城 <span>／ 展览记忆</span></button></header>
+  <main>
+    <section id="intro" class="intro" aria-labelledby="title">
+      <p class="intro-kicker">在风沙之外，再看一座城</p>
+      <div class="title-lockup"><span class="seal">永不<br>消失的</span><h1 id="title">黑水城</h1></div>
+      <p class="english-title">KHARA-KHOTO RUINS</p>
+      <p class="intro-text">城池隐入流沙，记忆留在此间。<br>循着文字、器物与丹青，重返展览中的黑水城。</p>
+      <div class="intro-actions"><button id="enter" class="primary">循迹入城 <span aria-hidden="true">↗</span></button><button id="preface" class="text-button">读一读前言 <span aria-hidden="true">＋</span></button></div>
+    </section>
+    <section id="exhibition" class="exhibition" aria-label="分区照片" hidden>
+      <div class="chapter-copy">
+        <p id="chapter-number" class="chapter-number"></p><h2 id="chapter-title"></h2>
+        <p id="chapter-description" class="chapter-description"></p>
+        <div class="photo-information"><p id="media-kind"></p><h3 id="media-title"></h3><p id="media-reference"></p></div>
+        <div class="photo-actions"><button id="previous" class="round" aria-label="上一张">←</button><span id="counter" aria-live="polite"></span><button id="next" class="round" aria-label="下一张">→</button></div>
+      </div>
+      <div class="media-stage">
+        <button id="photo-open" class="photo-open" aria-label="放大当前照片"><img id="photo" alt=""><span>细看原图 <i aria-hidden="true">↗</i></span></button>
+        <div id="video-container" hidden><video id="video" controls playsinline preload="metadata"></video><p id="video-error" hidden>当前浏览器无法播放，<a id="video-download" download>下载原始视频</a>。</p></div>
+      </div>
+      <div class="filmstrip-wrap"><span class="filmstrip-label">本区影像</span><div id="filmstrip" class="filmstrip" role="group" aria-label="选择本区影像"></div></div>
+    </section>
+    <div class="scene-tools"><span id="scene-caption">现场一瞥 · 大漠遗城</span><button id="scene-toggle" aria-pressed="false">只看空间 <span aria-hidden="true">⤢</span></button><button id="scene-original" hidden>查看完整照片 ↗</button></div>
+  </main>
+  <footer class="journey"><div class="journey-label"><span>循迹</span><small>选择一个展区</small></div><nav id="chapters" aria-label="展区导航"></nav><span class="journey-note">照片里的<br>一次重访</span></footer>
+  <dialog id="viewer" aria-labelledby="viewer-title">
+    <header class="viewer-header"><div><span id="viewer-count"></span><h2 id="viewer-title"></h2></div><button id="viewer-close">返回展览 <span aria-hidden="true">×</span></button></header>
+    <div id="image-viewport" class="image-viewport"><img id="full-image" alt="" draggable="false"></div>
+    <button id="viewer-prev" class="viewer-arrow prev" aria-label="上一张照片">←</button><button id="viewer-next" class="viewer-arrow next" aria-label="下一张照片">→</button>
+    <footer class="viewer-footer"><span class="zoom-hint">滚轮缩放 · 放大后拖动</span><div class="zoom-controls"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-reset" aria-label="重置缩放">100%</button><button id="zoom-in" aria-label="放大">＋</button></div><a id="original-link" target="_blank" rel="noopener">打开原图 ↗</a></footer>
+  </dialog>
+  <noscript><p class="noscript">请启用 JavaScript 以切换展区。<a href="reference/main/IMG_4888.JPG">阅读展览前言</a></p></noscript>
+</body>
+</html>

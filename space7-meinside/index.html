@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#273b35">
+  <meta name="description" content="向内寻迹，RORI HEE 个展。以 20 张现场照片，记录鹿角、云朵与画里的世界。">
+  <title>向内寻迹 · 展览记录</title>
+  <link rel="icon" href="data:,">
+  <link rel="preload" as="image" href="assets/photos/IMG_5314.webp">
+  <link rel="stylesheet" href="../shared/exhibition-tools.css">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script>
+  <script defer src="../shared/exhibition-tools.js" data-exhibition-id="meinside" data-exhibition-title="向内寻迹"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <img id="ambient-a" src="assets/ambient/IMG_5321.webp" alt="">
+  </div>
+  <header class="masthead">
+    <span class="archive-mark">现场留影 <span>07</span></span>
+    <time datetime="2026-10-10">2026.10.10</time>
+  </header>
+
+  <main id="main" class="exhibition">
+    <section class="intro" aria-labelledby="exhibition-title">
+      <p class="artist">RORI HEE <span>个展</span></p>
+      <h1 id="exhibition-title">向内<br>寻迹<span class="title-orbit" aria-hidden="true">°</span></h1>
+      <p class="english-title" lang="en"><span>Journey of</span> <span>Self-Discovery</span></p>
+      <p class="intro-copy">沿着鹿角、云朵与梦里的伙伴，<br>再看一遍留在现场的细节。</p>
+      <div class="intro-links"><button id="start">从第一张看起 <span aria-hidden="true">↗</span></button><button id="foreword">读展览前言</button></div>
+      <p class="record-note"><span class="record-dot" aria-hidden="true"></span>一次看展，20 张记忆。</p>
+    </section>
+
+    <section class="photograph" aria-label="当前展览照片">
+      <div class="photo-stage" id="photo-stage">
+        <button class="photo-open" id="photo-open" aria-label="放大当前照片">
+          <img id="photo" src="assets/photos/IMG_5314.webp" width="1800" height="2400" alt="蓝绿色画面里的鹿角少年，双手托着脸，云朵浮在身边">
+          <span class="enlarge-hint">细看照片 <span aria-hidden="true">⤢</span></span>
+        </button>
+      </div>
+      <div class="photo-caption">
+        <div><p id="photo-reference">照片导览 · IMG_5314</p><h2 id="photo-title">鹿角与云朵</h2></div>
+        <div class="paging"><button id="previous" aria-label="上一张照片">←</button><p id="counter" aria-live="polite">09 <span>/ 20</span></p><button id="next" aria-label="下一张照片">→</button></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="photo-browser">
+    <div class="browser-heading"><nav id="groups" aria-label="照片导览分组"></nav><p class="keyboard-hint">← → 切换照片</p></div>
+    <div class="filmstrip" id="filmstrip" role="group" aria-label="选择展览照片"></div>
+    <p class="guide-note">照片标题用于导览，作品信息请以现场展签为准。</p>
+  </footer>
+
+  <dialog id="viewer" aria-labelledby="viewer-title">
+    <header class="viewer-header"><div><p id="viewer-reference"></p><h2 id="viewer-title"></h2></div><button id="viewer-close" autofocus>返回观看 <span aria-hidden="true">×</span></button></header>
+    <div class="image-viewport" id="image-viewport"><img id="full-image" alt="" draggable="false"></div>
+    <button id="viewer-prev" class="viewer-arrow prev" aria-label="上一张照片">←</button><button id="viewer-next" class="viewer-arrow next" aria-label="下一张照片">→</button>
+    <footer class="viewer-footer"><span class="zoom-hint">滚轮缩放 · 放大后拖动</span><div class="zoom-controls"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-reset" aria-label="重置缩放">100%</button><button id="zoom-in" aria-label="放大">＋</button></div><a id="original-link" target="_blank" rel="noopener">打开原图 ↗</a></footer>
+  </dialog>
+  <noscript><p class="noscript">启用 JavaScript 可浏览全部照片。<a href="reference/IMG_5314.JPG">查看原图</a> · <a href="../index.html">返回展览体验馆</a></p></noscript>
+</body>
+</html>

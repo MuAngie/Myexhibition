@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>陀思妥耶夫斯基：在自由、罪与信仰之间</title>
+  <meta name="description" content="一页式中文导览：陀思妥耶夫斯基的生平、思想、代表作、文学方法、争议与阅读顺序。" />
+  <style>
+    :root{
+      --bg:#f3efe7;--paper:#fffaf1;--ink:#1f1c19;--muted:#6f675f;--line:#d8cfc4;
+      --accent:#7d2f2b;--accent2:#2f4a43;--gold:#a57a38;--shadow:0 18px 50px rgba(38,31,25,.10);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Serif SC","Songti SC","STSong",Georgia,serif;line-height:1.78}
+    a{color:inherit}.wrap{width:min(1120px,92vw);margin:auto}
+    .hero{min-height:88vh;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:5vw;padding:72px 0 48px}
+    .eyebrow{letter-spacing:.15em;color:var(--accent);font-size:.82rem;font-weight:700;text-transform:uppercase}
+    h1{font-size:clamp(3rem,8vw,7.3rem);line-height:.93;margin:.22em 0 .25em;letter-spacing:-.045em}
+    .hero p{font-size:clamp(1.05rem,1.7vw,1.35rem);max-width:42rem;color:#473f38}
+    .dates{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);margin-top:1.8rem}
+    .portrait{position:relative}.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(100%) contrast(1.06);border-radius:3px;box-shadow:var(--shadow)}
+    .portrait:after{content:"";position:absolute;inset:18px -18px -18px 18px;border:1px solid var(--gold);z-index:-1}
+    .caption{font-size:.76rem;color:var(--muted);margin-top:12px}
+    nav{position:sticky;top:0;z-index:10;background:rgba(243,239,231,.9);backdrop-filter:blur(10px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    nav .wrap{display:flex;gap:22px;overflow:auto;white-space:nowrap;padding:11px 0;font-size:.88rem}nav a{text-decoration:none;color:#514940}nav a:hover{color:var(--accent)}
+    section{padding:80px 0;border-bottom:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:.35fr 1fr;gap:30px;margin-bottom:34px}.section-no{font-family:ui-monospace,monospace;color:var(--accent);font-size:.9rem}
+    h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.08;margin:0}h3{font-size:1.25rem;margin:.2rem 0 .5rem}
+    .lead{font-size:1.26rem;max-width:52rem}.muted{color:var(--muted)}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--paper);border:1px solid var(--line);padding:24px;box-shadow:0 8px 24px rgba(55,44,34,.04)}
+    .card strong{color:var(--accent)}.card p:last-child{margin-bottom:0}
+    .timeline{position:relative;margin:20px 0 0}.timeline:before{content:"";position:absolute;left:84px;top:0;bottom:0;width:1px;background:var(--line)}
+    .event{display:grid;grid-template-columns:70px 1fr;gap:30px;padding:0 0 30px}.year{font-family:ui-monospace,monospace;color:var(--accent);font-weight:700}.event div:last-child{position:relative}.event div:last-child:before{content:"";position:absolute;left:-35px;top:.55em;width:9px;height:9px;background:var(--paper);border:2px solid var(--accent);border-radius:50%}
+    .quote{font-size:clamp(1.5rem,3.2vw,2.7rem);line-height:1.35;border-left:4px solid var(--accent);padding-left:24px;margin:32px 0;color:#312b26}
+    .work{display:grid;grid-template-columns:110px 1fr;gap:18px;border-top:1px solid var(--line);padding:22px 0}.work:first-child{border-top:0}.work .yr{font-family:ui-monospace,monospace;color:var(--muted)}
+    .tag{display:inline-block;border:1px solid var(--line);padding:3px 9px;border-radius:999px;font-size:.76rem;color:var(--muted);margin:4px 5px 0 0}
+    .photo-wide{margin:30px 0;background:#ddd;overflow:hidden}.photo-wide img{width:100%;height:min(46vw,520px);object-fit:cover;display:block;filter:saturate(.7)}
+    .reading{counter-reset:item}.reading .step{counter-increment:item;display:grid;grid-template-columns:58px 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line)}.reading .step:before{content:counter(item,decimal-leading-zero);font-family:ui-monospace,monospace;color:var(--accent);font-size:1.15rem}
+    .verdict{background:var(--accent2);color:#f4efe7;padding:40px;margin-top:28px}.verdict b{color:#fff}.verdict .muted{color:#c7d0cc}
+    footer{padding:54px 0 80px;color:var(--muted);font-size:.84rem}footer a{color:#56483e}.sources{columns:2;column-gap:40px}.sources li{break-inside:avoid;margin-bottom:10px}
+    @media(max-width:800px){.hero{grid-template-columns:1fr;min-height:auto;padding-top:52px}.portrait{max-width:520px}.grid2,.grid3,.section-head{grid-template-columns:1fr}.section-head{gap:8px}.timeline:before{left:64px}.event{grid-template-columns:54px 1fr;gap:24px}.event div:last-child:before{left:-29px}.sources{columns:1}.work{grid-template-columns:80px 1fr}section{padding:60px 0}}
+  </style>
+</head>
+<body>
+  <header class="wrap hero" id="top">
+    <div>
+      <div class="eyebrow">Fyodor Mikhailovich Dostoevsky</div>
+      <h1>陀思妥<br>耶夫斯基</h1>
+      <p>一个把小说写成精神审判室的人：他不断把人物逼到贫困、犯罪、欲望、羞耻、信仰和死亡的边缘，然后追问——人在真正自由的时候，究竟会做出什么？</p>
+      <div class="dates">1821.11.11 — 1881.02.09</div>
+    </div>
+    <figure class="portrait">
+      <img src="assets/artworks/IMG_3742.jpg" alt="展览现场中的陀思妥耶夫斯基肖像作品" />
+      <figcaption class="caption">展览现场中的陀思妥耶夫斯基肖像作品。</figcaption>
+    </figure>
+  </header>
+
+  <nav><div class="wrap">
+    <a href="#who">他是谁</a><a href="#life">人生转折</a><a href="#ideas">核心问题</a><a href="#works">代表作</a><a href="#method">文学方法</a><a href="#debate">争议</a><a href="#read">阅读顺序</a>
+  </div></nav>
+
+  <main>
+    <section id="who"><div class="wrap">
+      <div class="section-head"><div class="section-no">01 / WHO</div><div><h2>他不是“阴郁作家”这么简单</h2></div></div>
+      <p class="lead">陀思妥耶夫斯基是19世纪俄国小说家。他真正特殊的地方，不是“会写心理”，而是能让互相冲突的思想在人物身上获得生命：理性主义者、信徒、虚无主义者、罪犯、圣徒、赌徒，都不是作者手里的纸片人。</p>
+      <div class="grid3">
+        <article class="card"><h3>文学地位</h3><p>与托尔斯泰并列为19世纪俄国小说最具世界影响力的作家之一。他对20世纪存在主义、心理小说和现代主义产生了巨大影响。</p></article>
+        <article class="card"><h3>最关心的问题</h3><p>自由意志、罪责、苦难、信仰、虚无主义、人的自我欺骗，以及人在道德极限处是否仍然有选择。</p></article>
+        <article class="card"><h3>阅读体验</h3><p>他的小说常常嘈杂、过热、失控。人物不断争辩、忏悔、翻供、羞辱自己，也羞辱别人。形式上的“不稳定”恰恰是内容的一部分。</p></article>
+      </div>
+    </div></section>
+
+    <section id="life"><div class="wrap">
+      <div class="section-head"><div class="section-no">02 / LIFE</div><div><h2>真正改变他的，是1849年</h2><p class="muted">他的思想不能脱离监禁、假处决、苦役、疾病、债务与赌博来理解。</p></div></div>
+      <div class="timeline">
+        <div class="event"><div class="year">1821</div><div><h3>出生于莫斯科</h3><p>父亲是医生。后来他进入圣彼得堡军事工程学校受训，但很快放弃工程职业，转向文学。</p></div></div>
+        <div class="event"><div class="year">1846</div><div><h3>《穷人》带来早期成功</h3><p>处女作让他迅速受到批评界关注，但此后的作品并未持续获得同等赞誉。</p></div></div>
+        <div class="event"><div class="year">1849</div><div><h3>被捕、判死刑、经历假处决</h3><p>他因参与彼得拉舍夫斯基小组的讨论活动被捕。临刑前，死刑被改为苦役与军役。这不是文学传说，而是他人生的核心断裂点。</p></div></div>
+        <div class="event"><div class="year">1850–54</div><div><h3>鄂木斯克苦役</h3><p>四年西伯利亚苦役让他长期与普通罪犯共同生活，改变了他对知识分子、人民、罪犯、信仰和政治乌托邦的看法。</p></div></div>
+        <div class="event"><div class="year">1860s</div><div><h3>文学爆发，同时被债务追赶</h3><p>《地下室手记》《罪与罚》《赌徒》相继出现。他本人长期受到癫痫发作、债务和赌博问题困扰。</p></div></div>
+        <div class="event"><div class="year">1867</div><div><h3>与安娜·斯尼特金娜结婚</h3><p>安娜既是妻子，也是速记员、出版事务管理者。她对稳定他的生活和事业极其重要。</p></div></div>
+        <div class="event"><div class="year">1880</div><div><h3>《卡拉马佐夫兄弟》完成</h3><p>这是他思想与小说艺术的集大成之作；次年，他在圣彼得堡去世。</p></div></div>
+      </div>
+
+      <div class="photo-wide">
+        <img src="assets/photos/IMG_3743.jpg" alt="陀思妥耶夫斯基主题展览的晚期作品空间" />
+      </div>
+      <div class="caption">展览现场的晚期作品空间。肖像、雕塑与观众共同构成观看关系。</div>
+    </div></section>
+
+    <section id="ideas"><div class="wrap">
+      <div class="section-head"><div class="section-no">03 / IDEAS</div><div><h2>他的小说一直在逼问五件事</h2></div></div>
+      <div class="grid2">
+        <div class="card"><h3>1. 人真的追求自身利益吗？</h3><p>《地下室手记》最尖锐的攻击之一，就是针对“只要算清利益，人便会理性行动”的想法。陀思妥耶夫斯基认为，人甚至可能故意伤害自己，只为了证明自己不是可以被公式预测的机器。</p></div>
+        <div class="card"><h3>2. 没有超越性，道德还能站得住吗？</h3><p>他的作品反复测试一个危险问题：如果没有终极意义、上帝或永恒审判，道德义务究竟靠什么成立？他并没有通过简单说教解决它，而是让人物把问题活出来。</p></div>
+        <div class="card"><h3>3. 罪犯为什么要自我暴露？</h3><p>在他那里，犯罪往往不只是获取利益，而是测试边界。罪犯既想逃脱惩罚，又想被发现、被审判，甚至渴望通过承认罪责重新获得与他人的联系。</p></div>
+        <div class="card"><h3>4. 苦难能救赎人吗？</h3><p>他的答案不是“苦难自动使人高尚”。苦难同样可以把人变得残酷、卑劣或自毁。真正关键的是，人如何回应苦难。</p></div>
+        <div class="card"><h3>5. 自由为什么如此危险？</h3><p>如果人拥有真正自由，就意味着人可以拒绝合理、幸福、秩序甚至救赎。自由因此不只是权利，也是一种可怕的负担。</p></div>
+        <div class="card"><h3>一个关键矛盾</h3><p>他本人倾向东正教信仰与保守立场，但他笔下最强大的怀疑者往往并不弱。正因为反方被写得足够强，他的宗教小说才没有沦为宣传册。</p></div>
+      </div>
+      <div class="quote">“陀思妥耶夫斯基真正研究的，不是‘善人与恶人’，而是一个人如何同时拥有善与恶，而且自己也无法把两者彻底分开。”</div>
+    </div></section>
+
+    <section id="works"><div class="wrap">
+      <div class="section-head"><div class="section-no">04 / WORKS</div><div><h2>五部作品，五种进入他的方式</h2></div></div>
+      <div class="work"><div class="yr">1864</div><div><h3>《地下室手记》</h3><p>一个极端自觉、极端怨恨、又极端无力的人向世界宣战。篇幅短，却包含陀氏最重要的“反理性主义”问题。</p><span class="tag">自由意志</span><span class="tag">自我羞辱</span><span class="tag">现代主体</span></div></div>
+      <div class="work"><div class="yr">1866</div><div><h3>《罪与罚》</h3><p>大学生拉斯柯尔尼科夫为了验证自己的“非凡人物”理论而杀人。真正精彩的并非侦破，而是一个理论如何在人的身体、恐惧与良知中崩塌。</p><span class="tag">犯罪</span><span class="tag">罪责</span><span class="tag">救赎</span></div></div>
+      <div class="work"><div class="yr">1868–69</div><div><h3>《白痴》</h3><p>陀思妥耶夫斯基试图把一个近乎基督式的“绝对善人”放进现实社会，观察善是否真的能够拯救周围的人。结果比想象中黑暗得多。</p><span class="tag">纯真</span><span class="tag">欲望</span><span class="tag">毁灭</span></div></div>
+      <div class="work"><div class="yr">1871–72</div><div><h3>《群魔》</h3><p>政治思想、阴谋、革命组织和人格虚无纠缠在一起。这是他最强烈的政治小说，也是理解他对激进主义恐惧的关键。</p><span class="tag">政治</span><span class="tag">虚无主义</span><span class="tag">暴力</span></div></div>
+      <div class="work"><div class="yr">1879–80</div><div><h3>《卡拉马佐夫兄弟》</h3><p>父子冲突、弑父疑案、欲望、信仰与怀疑被压缩到一个家庭。伊万的反叛、“宗教大法官”章节，以及阿辽沙的信仰共同构成陀氏思想的最高密度区域。</p><span class="tag">信仰</span><span class="tag">恶的问题</span><span class="tag">自由</span></div></div>
+    </div></section>
+
+    <section id="method"><div class="wrap">
+      <div class="section-head"><div class="section-no">05 / METHOD</div><div><h2>为什么他的小说像一群人同时争夺麦克风</h2></div></div>
+      <p class="lead">后来巴赫金用“复调小说”来描述陀思妥耶夫斯基：重要人物并非单纯替作者说话，而是拥有相对独立的意识与价值立场。</p>
+      <div class="grid3">
+        <div class="card"><h3>人物是“观点的肉身”</h3><p>一个思想并不是抽象论证，而会变成某个人的口气、欲望、疾病、经济处境与行动。</p></div>
+        <div class="card"><h3>场景总处于高压状态</h3><p>葬礼、审判、酒馆、逼债、求婚、谋杀前后——他偏爱让人物在无法维持体面的地方说真话。</p></div>
+        <div class="card"><h3>矛盾不会被轻易解决</h3><p>他经常让一个强论点遭遇另一个同样强的论点。小说因此不是作者给答案，而像实验室：看人在观念中会发生什么。</p></div>
+      </div>
+    </div></section>
+
+    <section id="debate"><div class="wrap">
+      <div class="section-head"><div class="section-no">06 / DEBATE</div><div><h2>不要把他神化</h2></div></div>
+      <div class="grid2">
+        <div><h3>对他的强批评</h3><p>他的后期政治思想明显保守，并带有俄国民族主义和斯拉夫主义倾向；《作家日记》等非虚构文字中还存在严重的反犹表达。这些不能用“时代局限”四个字轻轻带过。</p><p>从形式上看，他的小说也并不总是“精致”：结构会失衡，人物会长篇演说，情节会夸张到近乎肥皂剧。</p></div>
+        <div><h3>为什么这些问题没有使他失去价值</h3><p>因为他的伟大并不依赖于“政治上永远正确”或“结构永远完美”。他的核心能力，是把一个观念追到它在人身上最危险的后果，并允许反对自己的声音在小说里变得强大。</p><p>换句话说：你可以反对陀思妥耶夫斯基的答案，但很难绕过他提出的问题。</p></div>
+      </div>
+    </div></section>
+
+    <section id="read"><div class="wrap">
+      <div class="section-head"><div class="section-no">07 / READ</div><div><h2>第一次读，别从最厚的开始</h2></div></div>
+      <div class="reading">
+        <div class="step"><div><h3>《罪与罚》</h3><p>最适合作为入口。故事推动力强，同时几乎囊括他最典型的罪责、思想实验与救赎结构。</p></div></div>
+        <div class="step"><div><h3>《地下室手记》</h3><p>读完《罪与罚》再读，会更容易看懂他为什么如此不信任“理性会自动让人变好”这种乐观主义。</p></div></div>
+        <div class="step"><div><h3>《白痴》或《群魔》</h3><p>想研究善与毁灭，读《白痴》；想研究政治极端主义与虚无主义，读《群魔》。</p></div></div>
+        <div class="step"><div><h3>《卡拉马佐夫兄弟》</h3><p>最后读。它不是因为“最难”才放最后，而是因为读过前面的作品之后，你会听见其中更多回声。</p></div></div>
+      </div>
+      <div class="verdict"><b>一句话定位：</b> 陀思妥耶夫斯基不是在告诉你“人应该怎样生活”；他更像在不断拆掉你关于人的简单理论——理性主义的、道德主义的、宗教的、无神论的——然后逼你重新回答：人在拥有自由之后，究竟承担什么责任？</div>
+    </div></section>
+  </main>
+
+  <footer><div class="wrap">
+    <h3>资料来源</h3>
+    <p>本页为介绍性导览。生平日期与作品信息交叉参考通行传记资料；有争议的传闻（例如其父具体死因）未作为确定事实写入正文。</p>
+    <ol class="sources">
+      <li><a href="https://www.britannica.com/biography/Fyodor-Dostoyevsky" target="_blank" rel="noreferrer">Encyclopaedia Britannica — Fyodor Dostoyevsky</a></li>
+      <li><a href="https://www.penguinrandomhouse.com/authors/7324/fyodor-dostoevsky/" target="_blank" rel="noreferrer">Penguin Random House — Fyodor Dostoevsky</a></li>
+      <li><a href="https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Dostoievsky%2C_Feodor_Mikhailovich" target="_blank" rel="noreferrer">1911 Encyclopaedia Britannica entry via Wikisource</a></li>
+    </ol>
+    <p style="margin-top:34px"><a href="#top">↑ 返回顶部</a></p>
+  </div></footer>
+</body>
+</html>

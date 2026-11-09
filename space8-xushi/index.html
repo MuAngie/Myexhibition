@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#efedf2">
+  <meta name="description" content="虚与实，东西方的感知对话系列第二章。以16张完整现场照片，重看形、色、光与留白。">
+  <title>虚与实 · 展览记录</title>
+  <link rel="icon" href="data:,">
+  <link rel="preload" as="image" href="assets/photos/IMG_5339.webp">
+  <link rel="preload" as="image" href="assets/photos/IMG_5344.webp">
+  <link rel="stylesheet" href="../shared/exhibition-tools.css">
+  <link rel="stylesheet" href="styles.css?v=fixed-nav2">
+  <script defer src="data.js"></script>
+  <script defer src="../shared/exhibition-tools.js" data-exhibition-id="xushi" data-exhibition-title="虚与实"></script>
+  <script defer src="app.js?v=fixed-nav"></script>
+</head>
+<body>
+  <a class="skip-link" href="#gallery">跳到照片</a>
+  <header class="masthead">
+    <a class="archive-mark" href="../index.html">展览体验馆 <span>/ 留影 08</span></a>
+    <div class="header-end"><time datetime="2026-10-10">看展于 2026.10.10</time></div>
+  </header>
+  <main class="exhibition">
+    <aside class="intro" aria-labelledby="exhibition-title">
+      <p class="series">东西方的感知对话系列 · 第二章</p>
+      <h1 id="exhibition-title"><span class="void">虚</span><span class="and">与</span><span class="volume">实</span></h1>
+      <p class="english-title" lang="en">VOID <span>&amp;</span><br>VOLUME</p>
+      <p class="intro-copy">在空与满之间，<br>重看一次观看。</p>
+      <dl class="exhibition-meta">
+        <div><dt>展期</dt><dd>2026.08.15 至 10.18</dd></div>
+        <div><dt>地点</dt><dd>Bluerider ART 上海·外滩</dd></div>
+        <div><dt>留影</dt><dd>16 张现场照片</dd></div>
+      </dl>
+      <div class="intro-actions"><button id="start">从第一张看起 <span aria-hidden="true">↗</span></button><button id="foreword">读前言 <span aria-hidden="true">↗</span></button></div>
+      <details class="curatorial">
+        <summary>关于这场展览 <span aria-hidden="true">＋</span></summary>
+        <p>展览邀请十二位来自东西方的当代艺术家，围绕空间、感知与存在展开对话。从量体与物质，到色彩、光与空白，作品沿着“虚”与“实”的不同程度并置。</p>
+        <p class="source-note">根据现场前言整理。<button id="source-foreword">查看前言照片 ↗</button></p>
+      </details>
+      <div id="feeling-slot"></div>
+    </aside>
+
+    <section class="gallery" id="gallery" aria-label="展览照片浏览" tabindex="-1">
+      <div class="browser-heading"><nav id="groups" aria-label="照片导览分组"></nav><div class="paging"><button id="previous" aria-label="上一张照片">←</button><p id="counter" aria-live="polite">07 <span>/ 16</span></p><button id="next" aria-label="下一张照片">→</button></div></div>
+      <div class="filmstrip" id="filmstrip" role="group" aria-label="选择照片"></div>
+      <figure class="current-photo">
+        <div class="photo-stage" id="photo-stage">
+          <button class="photo-open" id="photo-open" aria-label="放大照片：黄、蓝、紫之间">
+            <img id="photo" src="assets/photos/IMG_5339.webp" width="2400" height="1800" alt="白色展墙上三幅大小不同的色域作品，从左至右为黄、蓝、紫">
+            <span class="enlarge-hint">细看照片 <span aria-hidden="true">⤢</span></span>
+          </button>
+        </div>
+        <figcaption class="photo-caption">
+          <div><p class="photo-reference" id="photo-reference">组合照片 / IMG_5339</p><h2 id="photo-title">黄、蓝、紫之间</h2></div>
+        </figcaption>
+      </figure>
+      <div class="photo-context"><p id="photo-note">三块颜色之间，空着的墙面也参与了这一次观看。</p><p id="photo-label" class="label-note"></p></div>
+      <p class="guide-note">分组与照片标题用于导览，作品信息以现场展签为准。<span>← → 切换照片</span></p>
+    </section>
+  </main>
+  <footer class="page-footer"><span>虚与实 · 一次观看的留影</span><span>形 / 色 / 光 / 留白</span></footer>
+
+  <dialog id="viewer" aria-labelledby="viewer-title">
+    <div class="image-viewport" id="image-viewport"><img id="full-image" alt="" draggable="false"></div>
+    <header class="viewer-header"><div><p id="viewer-reference"></p><h2 id="viewer-title"></h2></div><button id="viewer-close" autofocus>返回观看 <span aria-hidden="true">×</span></button></header>
+    <button id="viewer-prev" class="viewer-arrow prev" aria-label="上一张照片">←</button><button id="viewer-next" class="viewer-arrow next" aria-label="下一张照片">→</button>
+    <footer class="viewer-footer"><span class="zoom-hint">滚轮缩放 · 放大后拖动</span><div class="zoom-controls"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-reset" aria-label="重置缩放">100%</button><button id="zoom-in" aria-label="放大">＋</button></div><a id="original-link" target="_blank" rel="noopener">打开原图 ↗</a></footer>
+  </dialog>
+  <noscript><p class="noscript">启用 JavaScript 可浏览全部照片。<a href="reference/IMG_5334.JPG">阅读前言原图</a> · <a href="reference/IMG_5339.JPG">查看色域原图</a> · <a href="../index.html">展览体验馆</a></p></noscript>
+</body>
+</html>

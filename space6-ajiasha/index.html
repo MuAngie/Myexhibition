@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#28212f">
+  <meta name="description" content="谜案，永不落幕。循着现场照片，重访阿加莎·克里斯蒂主题展暨侦探小说珍藏展。">
+  <title>谜案，永不落幕 · 阿加莎展览记忆</title>
+  <link rel="icon" href="data:,">
+  <link rel="preload" as="image" href="assets/photos/IMG_5303.webp">
+  <link rel="stylesheet" href="../shared/exhibition-tools.css">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script>
+  <script defer src="../shared/exhibition-tools.js" data-exhibition-id="ajasha" data-exhibition-title="谜案，永不落幕"></script>
+  <script defer src="app.js"></script>
+</head>
+<body data-view="intro">
+  <div class="backdrop" aria-hidden="true"><img id="backdrop" src="assets/photos/IMG_5303.webp" alt=""></div>
+  <header class="masthead">
+    <button id="home" aria-label="返回展览首页"><span class="brand-symbol" aria-hidden="true">◇</span><span>阿加莎<span class="brand-subtitle">展览记忆</span></span></button>
+  </header>
+  <main>
+    <section id="intro" class="intro" aria-labelledby="title">
+      <p class="eyebrow">阿加莎·克里斯蒂主题展暨侦探小说珍藏展</p>
+      <h1 id="title">谜案<span>永不落幕<span class="title-dot">。</span></span></h1>
+      <p class="english-title" lang="en">Agatha Christie<br><span>An Exhibition of Mystery</span></p>
+      <p class="intro-copy">循着书页与光影，<br>再走进一个故事尚未结束的世界。</p>
+      <button id="enter" class="enter">开始观看 <span aria-hidden="true">↗</span></button>
+      <p class="archive-note">一次现场的记忆 <span>／</span> 36 张照片</p>
+    </section>
+    <section id="exhibition" class="exhibition" aria-label="展览照片" hidden>
+      <div class="chapter-copy">
+        <p id="chapter-number" class="eyebrow"></p>
+        <h2 id="chapter-title"></h2>
+        <p id="chapter-description" class="chapter-description"></p>
+        <div class="photo-label"><span id="photo-kind"></span><h3 id="photo-title"></h3><p id="photo-reference"></p></div>
+        <div class="paging"><button id="previous" aria-label="上一张照片">←</button><span id="counter" aria-live="polite"></span><button id="next" aria-label="下一张照片">→</button></div>
+      </div>
+      <div class="photo-column">
+        <button id="photo-open" class="photo-open" aria-label="放大当前照片"><img id="photo" alt=""><span>细看照片 <i aria-hidden="true">↗</i></span></button>
+        <div id="filmstrip" class="filmstrip" role="group" aria-label="本章照片"></div>
+      </div>
+    </section>
+    <section id="space" class="space" aria-label="现场空间" hidden>
+      <div class="space-heading"><p class="eyebrow">在现场，停留片刻</p><h2>故事之外的空间</h2><p>四张现场留影，换一个角度再看。</p></div>
+      <div id="scenes" class="scenes" role="group" aria-label="选择空间照片"></div>
+    </section>
+    <div class="scene-toolbar"><span id="scene-caption">现场一瞥 · 列车空间</span><div><button id="scene-original" hidden>完整空间照片 ↗</button><button id="space-toggle" aria-pressed="false">只看空间 <span aria-hidden="true">⤢</span></button></div></div>
+  </main>
+  <footer class="journey"><span class="journey-caption">展览章节<span>从任意一页开始</span></span><nav id="chapters" aria-label="选择展览章节"></nav></footer>
+  <dialog id="viewer" aria-labelledby="viewer-title">
+    <header class="viewer-header"><div><p id="viewer-reference"></p><h2 id="viewer-title"></h2></div><button id="viewer-close">返回观看 <span aria-hidden="true">×</span></button></header>
+    <div id="image-viewport" class="image-viewport"><img id="full-image" alt="" draggable="false"></div>
+    <button id="viewer-prev" class="viewer-arrow prev" aria-label="上一张照片">←</button><button id="viewer-next" class="viewer-arrow next" aria-label="下一张照片">→</button>
+    <footer class="viewer-footer"><span class="zoom-hint">滚轮缩放 · 放大后拖动</span><div class="zoom-controls"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-reset" aria-label="重置缩放">100%</button><button id="zoom-in" aria-label="放大">＋</button></div><a id="original-link" target="_blank" rel="noopener">打开原图 ↗</a></footer>
+  </dialog>
+  <noscript><p class="noscript">请启用 JavaScript 浏览展览，或<a href="reference/IMG_5267.JPG">查看展览入口照片</a>。</p></noscript>
+</body>
+</html>

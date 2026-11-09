@@ -1,0 +1,121 @@
+:root {
+  --paper: oklch(96% .009 100);
+  --ink: oklch(28% .016 150);
+  --muted: oklch(46% .018 150);
+  --line: oklch(77% .014 120);
+  --accent: oklch(45% .14 20);
+  --red: oklch(45% .14 20);
+  --blue: oklch(42% .12 267);
+  --yellow: oklch(81% .13 87);
+  --white: oklch(91% .012 100);
+  --celadon: oklch(69% .065 168);
+  --other: oklch(60% .025 90);
+  color: var(--ink); background: var(--paper);
+  font-family: "DengXian", "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-synthesis: none;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; }
+button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+button { color: inherit; font: inherit; border: 0; background: transparent; cursor: pointer; }
+button:disabled { opacity: .3; cursor: default; }
+a { color: inherit; text-underline-offset: 4px; }
+button:focus-visible, a:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+main, .masthead, .page-footer { width: min(1320px, calc(100% - 100px)); margin-inline: auto; }
+.skip-link { position: fixed; top: -90px; left: 15px; z-index: 100; background: var(--paper); padding: 16px; }
+.skip-link:focus { top: 12px; }
+.masthead { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 25px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+.archive-mark { text-decoration: none; }
+.archive-mark span { color: var(--muted); margin-left: 16px; }
+.header-end { display: flex; align-items: center; gap: 26px; }
+.header-end time { color: var(--muted); }
+.intro { display: grid; grid-template-columns: .85fr 1.65fr; gap: clamp(30px, 5vw, 80px); align-items: center; padding: 52px 0 55px; }
+.subtitle { font-size: 12px; margin: 0 0 22px; color: var(--muted); line-height: 1.6; }
+h1 { margin: 0; font: 500 clamp(42px, 4.7vw, 68px)/1.24 "Songti SC", STSong, SimSun, serif; letter-spacing: .08em; }
+.title-colors { display: inline-flex; gap: 5px; margin-left: 12px; vertical-align: middle; }
+.title-colors i { width: 7px; height: 27px; background: var(--red); }
+.title-colors i:nth-child(2) { background: var(--blue); }.title-colors i:nth-child(3) { background: var(--yellow); }.title-colors i:nth-child(4) { background: var(--white); border: 1px solid var(--line); }.title-colors i:nth-child(5) { background: var(--celadon); }
+.english-title { margin: 16px 0 24px; font: 400 19px/1.35 Georgia, serif; }
+.intro-note { font-size: 16px; line-height: 1.8; margin: 0 0 20px; }
+.exhibition-meta { font-size: 11px; line-height: 1.8; margin: 0 0 20px; }
+.exhibition-meta div { display: flex; gap: 16px; margin: 5px 0; }
+.exhibition-meta dt { color: var(--muted); flex-shrink: 0; }.exhibition-meta dd { margin: 0; }
+.intro-actions { display: flex; gap: 24px; align-items: center; font-size: 12px; }
+.intro-actions a, .intro-actions button { text-decoration: none; border-bottom: 1px solid var(--ink); padding: 10px 0; }
+.intro-actions span { margin-left: 18px; }
+.poster { margin: 0; }.poster img { width: 100%; height: auto; display: block; }
+.poster figcaption { display: flex; gap: 20px; justify-content: space-between; margin-top: 13px; font-size: 10px; color: var(--muted); line-height: 1.6; }
+.poster figcaption a { text-decoration: none; }
+.gallery { scroll-margin-top: 20px; min-width: 0; }
+.archive-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.archive-heading h2 { margin: 0; font: 400 25px/1.4 "Songti SC", STSong, SimSun, serif; letter-spacing: .1em; }
+#all-photos { min-height: 44px; padding: 9px 14px; font-size: 12px; border: 1px solid var(--line); border-radius: 24px; }
+#all-photos[aria-pressed="true"] { color: var(--paper); border-color: var(--ink); background: var(--ink); }
+#all-photos span { margin-left: 10px; font-size: 10px; }
+#groups { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+#groups button { position: relative; display: flex; align-items: center; gap: 13px; text-align: left; padding: 17px 18px; border: 1px solid var(--line); background: var(--paper); min-height: 100px; }
+#groups button::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 5px; background: var(--tone); }
+#groups button[aria-pressed="true"] { border-color: var(--ink); background: var(--tint); }
+#groups .color-name { font: 400 35px/1.2 "Songti SC", STSong, SimSun, serif; }
+#groups .color-text { display: flex; flex-direction: column; gap: 8px; font-size: 11px; }
+#groups .color-count { font-size: 10px; color: var(--muted); }
+#groups button:hover { background: var(--tint); }
+[data-tone="red"] { --tone: var(--red); --tint: oklch(93% .023 20); --space-image: url("assets/photos/IMG_5403.webp"); } [data-tone="blue"] { --tone: var(--blue); --tint: oklch(93% .021 267); --space-image: url("assets/photos/IMG_5415.webp"); }
+[data-tone="yellow"] { --tone: var(--yellow); --tint: oklch(94% .039 87); --space-image: url("assets/photos/IMG_5420.webp"); } [data-tone="white"] { --tone: var(--white); --tint: oklch(94% .012 100); --space-image: url("assets/photos/IMG_5421.webp"); }
+[data-tone="celadon"] { --tone: var(--celadon); --tint: oklch(93% .025 168); --space-image: url("assets/photos/IMG_5422.webp"); } [data-tone="other"] { --tone: var(--other); --tint: oklch(93% .014 90); }
+.chapter-heading { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 33px 0 18px; }
+#chapter-kicker { color: var(--muted); font-size: 11px; margin: 0 0 9px; }
+.chapter-heading h3 { font: 400 30px/1.4 "Songti SC", STSong, SimSun, serif; letter-spacing: .06em; margin: 0; }
+#chapter-copy { font-size: 12px; line-height: 1.8; margin: 10px 0 0; max-width: 65ch; }
+#read-chapter { font-size: 12px; white-space: nowrap; padding: 12px 0; text-decoration: underline; text-underline-offset: 6px; }
+.filmstrip { display: flex; gap: 9px; overflow-x: auto; padding: 10px 4px 20px; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+.filmstrip button { position: relative; flex: 0 0 59px; height: 76px; padding: 0; opacity: .65; }
+.filmstrip img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.filmstrip button[aria-current="true"] { outline: 2px solid var(--ink); outline-offset: 3px; opacity: 1; }
+.filmstrip button:hover { opacity: 1; }
+.thumb-number { position: absolute; bottom: 0; right: 0; padding: 2px 5px; color: var(--paper); background: oklch(28% .016 150 / .9); font-size: 9px; }
+.current-photo { margin: 0; }.photo-stage { display: grid; place-items: center; height: min(74svh, 800px); min-height: 350px; padding: 20px; background: var(--tint); }
+.gallery:not([data-tone="other"]) .photo-stage { position: relative; isolation: isolate; overflow: hidden; background: var(--paper); }
+.gallery:not([data-tone="other"]) .photo-stage::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--space-image) center / cover; opacity: .4; filter: blur(6px); mask-image: radial-gradient(ellipse at center, #000 20%, transparent 80%); }
+.photo-open { display: flex; justify-content: center; align-items: center; position: relative; width: 100%; height: 100%; padding: 0; min-height: 0; }
+.photo-open img { display: block; width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; }
+.photo-stage.reading { height: auto; padding: 20px; }.reading .photo-open img { width: min(100%, 960px); max-height: none; }
+.enlarge-hint { position: absolute; bottom: 10px; right: 10px; padding: 10px 12px; color: var(--paper); background: oklch(28% .016 150 / .87); font-size: 10px; }
+.photo-caption { display: flex; justify-content: space-between; gap: 25px; align-items: center; padding: 22px 0 17px; }
+.photo-reference { margin: 0 0 8px; color: var(--muted); font-size: 11px; }.photo-caption h3 { font: 400 24px/1.5 "Songti SC", STSong, SimSun, serif; margin: 0; }
+.paging { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }.paging button { border: 1px solid var(--line); width: 44px; height: 44px; border-radius: 50%; }
+#counter { font-size: 16px; font-variant-numeric: tabular-nums; margin: 0; }#counter span { color: var(--muted); font-size: 12px; }
+.guide-note { display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 10px; line-height: 1.7; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.afterword { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; padding: 40px 0 44px; }.afterword h2 { margin: 0 0 18px; font: 400 23px/1.4 "Songti SC", STSong, SimSun, serif; }.afterword p { max-width: 65ch; font-size: 12px; line-height: 1.9; }
+.source-links { display: flex; flex-wrap: wrap; gap: 18px; font-size: 10px; color: var(--muted); }.source-links button { padding: 0; text-decoration: underline; text-underline-offset: 4px; }
+.feeling-invitation { margin-top: 0; color: var(--muted); }.feeling-invitation button { display: block; margin-top: 18px; padding: 0 0 7px; border-bottom: 1px solid var(--line); }
+.page-footer { display: flex; justify-content: space-between; gap: 20px; font-size: 10px; color: var(--muted); padding: 23px 0 30px; border-top: 1px solid var(--line); }.page-footer a { text-decoration: none; }
+.experience-hall-link { display: none; }.masthead .experience-feeling-trigger { position: static; color: var(--ink); border: 1px solid var(--line); background: transparent; padding: 9px 13px; font-family: inherit; }
+#feeling-slot .experience-feeling-panel { position: static; width: 100%; padding: 22px; border: 1px solid var(--line); color: var(--ink); background: oklch(94% .014 150); box-shadow: none; }
+#feeling-slot .experience-feeling-panel small, #feeling-slot .experience-feeling-panel label, #feeling-slot .experience-feeling-close, #feeling-slot .experience-feeling-status { color: var(--muted); }
+#feeling-slot .experience-feeling-panel h2 { font-size: 23px; }#feeling-slot textarea { border-color: var(--line); font-family: inherit; }#feeling-slot textarea::placeholder { color: var(--muted); }
+body:has(#viewer[open]) { overflow: hidden; }
+#viewer { position: fixed; inset: 0; width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: 0; border: 0; overflow: hidden; color: var(--ink); background: var(--paper); }
+#viewer::backdrop { background: var(--paper); }.image-viewport { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; touch-action: none; }
+#full-image { display: block; max-width: calc(100vw - 120px); max-height: calc(100dvh - 180px); width: auto; height: auto; object-fit: contain; user-select: none; }
+.image-viewport.zoomed { cursor: grab; }.image-viewport.zoomed:active { cursor: grabbing; }
+.viewer-header, .viewer-footer { position: absolute; z-index: 2; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 28px; background: var(--paper); }
+.viewer-header { top: 0; }.viewer-header p { margin: 0 0 5px; font-size: 10px; }.viewer-header h2 { margin: 0; font-size: 17px; font-weight: 400; }.viewer-header button { padding: 10px 0; font-size: 12px; white-space: nowrap; }.viewer-header button span { margin-left: 14px; font-size: 20px; }
+.viewer-footer { bottom: 0; min-height: 65px; font-size: 11px; }.viewer-footer a { text-decoration: none; }.viewer-footer button { min-width: 44px; height: 40px; }.zoom-controls { display: flex; align-items: center; gap: 8px; }
+.viewer-arrow { position: absolute; z-index: 2; top: 50%; width: 44px; height: 48px; transform: translateY(-50%); background: var(--paper); font-size: 20px; }.viewer-arrow.prev { left: 12px; }.viewer-arrow.next { right: 12px; }
+@media (max-width: 1100px) { main, .masthead, .page-footer { width: calc(100% - 60px); }.intro { grid-template-columns: .9fr 1.4fr; gap: 25px; }#groups button { padding: 16px 12px; gap: 9px; }#groups .color-name { font-size: 29px; }#groups .color-text { font-size: 10px; }.afterword { gap: 45px; } }
+@media (max-width: 760px) {
+  main, .masthead, .page-footer { width: calc(100% - 36px); }.masthead { padding: 18px 0; }.archive-mark span, .header-end time { display: none; }
+  .intro { grid-template-columns: 1fr; padding: 30px 0 35px; gap: 28px; }.intro-copy { display: grid; grid-template-columns: 1fr; }.subtitle { font-size: 11px; margin-bottom: 16px; }
+  h1 { font-size: clamp(40px, 10vw, 60px); }.english-title { font-size: 17px; margin: 14px 0 18px; }.intro-note { display: none; }.exhibition-meta { margin-bottom: 12px; }
+  .poster figcaption { font-size: 9px; gap: 10px; }.archive-heading h2 { font-size: 23px; }#groups { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+  #groups button { padding: 12px 10px; min-height: 84px; gap: 9px; }#groups .color-name { font-size: 28px; }#groups .color-text { font-size: 10px; }#groups .color-count { font-size: 9px; }
+  .chapter-heading { padding-top: 25px; align-items: start; gap: 12px; }.chapter-heading h3 { font-size: 24px; }#chapter-kicker { font-size: 10px; }#chapter-copy { font-size: 11px; }#read-chapter { font-size: 10px; padding-top: 5px; }
+  .filmstrip button { flex-basis: 51px; height: 68px; }.photo-stage { padding: 12px; height: 65svh; min-height: 300px; }.photo-stage.reading { padding: 10px; }.enlarge-hint { bottom: 0; right: 0; font-size: 9px; }
+  .photo-caption { gap: 12px; align-items: start; padding-top: 18px; }.photo-caption h3 { font-size: 19px; }.photo-reference { font-size: 10px; }.paging { gap: 6px; }.paging button { width: 38px; height: 42px; }#counter { font-size: 13px; }#counter span { font-size: 10px; }.guide-note span:last-child { display: none; }
+  .afterword { grid-template-columns: 1fr; gap: 28px; padding: 30px 0; }.page-footer { font-size: 9px; }
+  .viewer-header, .viewer-footer { padding: 14px 16px; gap: 12px; }.viewer-header h2 { font-size: 15px; }.viewer-header button { font-size: 11px; }.viewer-header button span { margin-left: 5px; }#full-image { max-width: calc(100vw - 24px); }.viewer-arrow { width: 36px; }.viewer-arrow.prev { left: 0; }.viewer-arrow.next { right: 0; }.zoom-hint { display: none; }
+}
+@media (max-width: 380px) { #groups .color-name { font-size: 24px; }#groups button { gap: 6px; padding: 12px 8px; }#groups .color-text { font-size: 9px; }#read-chapter { max-width: 75px; white-space: normal; }.paging { gap: 4px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blue Sketch · 展览空间记忆</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../shared/exhibition-tools.css">
+  <style>
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: oklch(18% 0.035 235);
+      color: oklch(94% 0.012 215);
+      font-family: Aptos, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    button { font: inherit; }
+
+    #scene {
+      position: fixed;
+      inset: 0;
+      cursor: grab;
+    }
+
+    #scene.is-dragging { cursor: grabbing; }
+    #scene.is-pointing { cursor: pointer; }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    #vignette {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 45%, transparent 45%, oklch(10% 0.025 235 / 0.22) 100%),
+        linear-gradient(to bottom, oklch(10% 0.025 235 / 0.15), transparent 18%, transparent 82%, oklch(10% 0.025 235 / 0.2));
+    }
+
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: minmax(320px, 720px) 1fr;
+      align-items: end;
+      padding: clamp(34px, 6vw, 92px);
+      background: linear-gradient(90deg, oklch(14% 0.04 236 / 0.91) 0%, oklch(14% 0.04 236 / 0.58) 46%, transparent 78%);
+      transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), visibility 800ms;
+    }
+
+    #intro[hidden] {
+      display: grid;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-copy { max-width: 650px; }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: oklch(80% 0.055 220);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Songti SC", SimSun, serif;
+      font-size: clamp(66px, 10vw, 146px);
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: -0.08em;
+      color: oklch(96% 0.018 215);
+      text-shadow: 0 12px 50px oklch(8% 0.035 235 / 0.35);
+    }
+
+    .subtitle {
+      max-width: 46ch;
+      margin: 28px 0 34px;
+      font-size: clamp(15px, 1.4vw, 19px);
+      line-height: 1.75;
+      color: oklch(87% 0.022 220);
+    }
+
+    #enter {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      min-height: 50px;
+      padding: 0 2px 9px;
+      border: 0;
+      border-bottom: 1px solid oklch(82% 0.08 220);
+      border-radius: 0;
+      background: transparent;
+      color: oklch(96% 0.018 215);
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: color 260ms ease, gap 450ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #enter:hover,
+    #enter:focus-visible {
+      gap: 26px;
+      color: oklch(88% 0.1 220);
+      outline: none;
+    }
+
+    #interface {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #interface.is-visible { opacity: 1; }
+
+    .identity {
+      position: absolute;
+      top: clamp(22px, 3vw, 42px);
+      left: clamp(24px, 3.5vw, 54px);
+    }
+
+    .identity strong {
+      display: block;
+      font-family: "Songti SC", SimSun, serif;
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+
+    .identity span {
+      display: block;
+      margin-top: 5px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: oklch(80% 0.035 220);
+    }
+
+    .controls {
+      position: absolute;
+      left: clamp(24px, 3.5vw, 54px);
+      bottom: clamp(22px, 3vw, 42px);
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      color: oklch(87% 0.025 220);
+    }
+
+    .controls span { white-space: nowrap; }
+
+    .controls i {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: oklch(76% 0.105 220);
+      box-shadow: 0 0 18px oklch(76% 0.105 220 / 0.7);
+    }
+
+    #reset {
+      position: absolute;
+      right: clamp(24px, 3.5vw, 54px);
+      bottom: clamp(22px, 3vw, 42px);
+      padding: 8px 0;
+      border: 0;
+      border-bottom: 1px solid oklch(70% 0.04 220 / 0.7);
+      border-radius: 0;
+      background: transparent;
+      color: oklch(87% 0.025 220);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    #reset:hover,
+    #reset:focus-visible {
+      color: oklch(97% 0.015 220);
+      border-color: oklch(90% 0.05 220);
+      outline: none;
+    }
+
+    #crosshair {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      border: 1px solid oklch(94% 0.02 220 / 0.72);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.68;
+      transition: width 220ms ease, height 220ms ease, background 220ms ease;
+    }
+
+    #crosshair.is-active {
+      width: 11px;
+      height: 11px;
+      background: oklch(86% 0.09 220 / 0.18);
+    }
+
+    #art-label {
+      position: absolute;
+      left: 50%;
+      bottom: clamp(72px, 9vh, 110px);
+      transform: translate(-50%, 8px);
+      padding: 9px 13px;
+      background: oklch(17% 0.04 235 / 0.82);
+      color: oklch(93% 0.02 220);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      opacity: 0;
+      transition: opacity 220ms ease, transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #art-label.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      z-index: 30;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      color: oklch(90% 0.035 220);
+      transition: opacity 500ms ease;
+    }
+
+    #loading.is-done { opacity: 0; pointer-events: none; }
+
+    #artwork-viewer {
+      width: fit-content;
+      max-width: none;
+      max-height: none;
+      padding: 0;
+      border: 0;
+      overflow: visible;
+      background: transparent;
+      color: oklch(94% 0.012 215);
+    }
+
+    #artwork-viewer::backdrop {
+      background: oklch(8% 0.025 235 / 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    #artwork-viewer[open] {
+      animation: viewer-in 420ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .viewer-content {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: 14px;
+    }
+
+    #viewer-image {
+      display: block;
+      max-width: min(86vw, 1600px);
+      max-height: 82vh;
+      object-fit: contain;
+      box-shadow: 0 28px 90px oklch(3% 0.02 235 / 0.55);
+    }
+
+    #viewer-caption {
+      margin: 0;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: oklch(86% 0.025 220);
+    }
+
+    #viewer-close {
+      position: absolute;
+      top: -42px;
+      right: 0;
+      padding: 7px 0;
+      border: 0;
+      border-bottom: 1px solid oklch(70% 0.04 220 / 0.7);
+      background: transparent;
+      color: oklch(92% 0.02 220);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+    }
+
+    #viewer-close:hover,
+    #viewer-close:focus-visible {
+      color: white;
+      border-color: white;
+      outline: none;
+    }
+
+    #enter-gallery {
+      margin-left: 28px;
+      padding: 12px 0;
+      border: 0;
+      border-bottom: 1px solid oklch(82% 0.08 220 / 0.5);
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    #view-switch {
+      position: fixed;
+      top: clamp(22px, 3vw, 42px);
+      right: clamp(24px, 3.5vw, 54px);
+      z-index: 16;
+      display: flex;
+      gap: 22px;
+    }
+
+    #view-switch[hidden], #painting-gallery[hidden] { display: none; }
+
+    #view-switch button, .gallery-navigation button {
+      padding: 8px 0;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      color: oklch(83% 0.025 220);
+      cursor: pointer;
+    }
+
+    #view-switch button[aria-pressed="true"] {
+      border-color: currentColor;
+      color: oklch(96% 0.018 215);
+    }
+
+    button:focus-visible { outline: 2px solid oklch(85% 0.075 220); outline-offset: 5px; }
+
+    #painting-gallery {
+      position: fixed;
+      inset: 0;
+      z-index: 12;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto auto;
+      gap: 16px;
+      padding: 94px clamp(24px, 5vw, 80px) 30px;
+      background: oklch(20% 0.035 235 / 0.94);
+    }
+
+    .gallery-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+    .gallery-heading h2 { margin: 0; font: 400 27px/1.3 "Songti SC", SimSun, serif; }
+    .gallery-heading p { margin: 8px 0 0; font-size: 12px; color: oklch(80% 0.025 220); }
+    #gallery-count { white-space: nowrap; font-size: 20px; font-variant-numeric: tabular-nums; }
+
+    #gallery-open {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+    }
+
+    #gallery-image { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+    .gallery-navigation { display: flex; align-items: center; justify-content: center; gap: 32px; }
+    #gallery-caption { margin: 0; text-align: center; font-size: 12px; color: oklch(86% 0.025 220); }
+    .gallery-navigation button:hover { border-color: currentColor; }
+
+    #gallery-thumbnails {
+      display: flex;
+      gap: 12px;
+      max-width: calc(100% - 150px);
+      overflow-x: auto;
+      padding: 4px 4px 8px;
+      scrollbar-width: thin;
+    }
+
+    #gallery-thumbnails button { flex: 0 0 82px; padding: 4px; border: 1px solid transparent; background: transparent; cursor: pointer; }
+    #gallery-thumbnails button[aria-current="true"] { border-color: oklch(84% 0.06 220); }
+    #gallery-thumbnails img { display: block; width: 72px; height: 54px; object-fit: contain; }
+    #gallery-thumbnails span { display: block; margin-top: 5px; color: oklch(83% 0.025 220); font-size: 10px; }
+    body.is-gallery #interface { visibility: hidden; }
+
+    @keyframes viewer-in {
+      from { opacity: 0; transform: scale(0.985); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 900px) {
+      #intro { grid-template-columns: 1fr; }
+      .controls span:nth-child(n+3) { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="scene" aria-label="可用鼠标漫游的蓝色展览空间"></main>
+  <div id="vignette" aria-hidden="true"></div>
+
+  <section id="intro" aria-labelledby="page-title">
+    <div class="intro-copy">
+      <p class="eyebrow">A SPATIAL MEMORY · 2026</p>
+      <h1 id="page-title">喜寿纪念</h1>
+      <p class="subtitle">井上直久新作展的空间记忆。展墙与作品位置依据现场照片还原，光线和空气保留一点回忆中的迟缓。</p>
+      <button id="enter" type="button">进入展厅 <span aria-hidden="true">↗</span></button>
+      <button id="enter-gallery" type="button">直接看画作</button>
+    </div>
+  </section>
+
+  <div id="interface" aria-hidden="true">
+    <div class="identity">
+      <strong>喜寿纪念</strong>
+      <span>BLUE SKETCH · SPATIAL STUDY</span>
+    </div>
+    <div class="controls">
+      <span><i></i>拖拽环视</span>
+      <span>滚轮前进</span>
+      <span>WASD 移动</span>
+      <span>再次点击看原图</span>
+    </div>
+    <div id="crosshair" aria-hidden="true"></div>
+    <div id="art-label" role="status" aria-live="polite"></div>
+    <button id="reset" type="button">回到入口</button>
+  </div>
+
+  <div id="loading">正在恢复空间</div>
+
+  <nav id="view-switch" aria-label="观看方式" hidden>
+    <button id="mode-space" type="button" aria-pressed="true">空间漫游</button>
+    <button id="mode-gallery" type="button" aria-pressed="false">画作陈列</button>
+  </nav>
+
+  <section id="painting-gallery" aria-labelledby="gallery-title" hidden>
+    <header class="gallery-heading">
+      <div>
+        <h2 id="gallery-title">喜寿纪念 · 画作</h2>
+        <p>沿现有展墙编排，保留照片完整构图。点击主图查看现场原片。</p>
+      </div>
+      <span id="gallery-count" role="status" aria-live="polite"></span>
+    </header>
+    <button id="gallery-open" type="button" aria-label="查看当前画作的完整现场原片"><img id="gallery-image" alt=""></button>
+    <div class="gallery-navigation">
+      <button id="gallery-prev" type="button" aria-label="上一幅画作">← 上一幅</button>
+      <p id="gallery-caption"></p>
+      <button id="gallery-next" type="button" aria-label="下一幅画作">下一幅 →</button>
+    </div>
+    <nav id="gallery-thumbnails" aria-label="选择画作"></nav>
+  </section>
+
+  <dialog id="artwork-viewer" aria-labelledby="viewer-caption">
+    <div class="viewer-content">
+      <button id="viewer-close" type="button">关闭</button>
+      <img id="viewer-image" alt="">
+      <p id="viewer-caption"></p>
+    </div>
+  </dialog>
+
+  <script src="./assets/embedded-textures.js"></script>
+  <script src="./vendor/three.min.js"></script>
+  <script>
+    (() => {
+      'use strict';
+
+      const sceneRoot = document.getElementById('scene');
+      const intro = document.getElementById('intro');
+      const enterButton = document.getElementById('enter');
+      const interfaceLayer = document.getElementById('interface');
+      const resetButton = document.getElementById('reset');
+      const crosshair = document.getElementById('crosshair');
+      const artLabel = document.getElementById('art-label');
+      const loading = document.getElementById('loading');
+      const artworkViewer = document.getElementById('artwork-viewer');
+      const viewerImage = document.getElementById('viewer-image');
+      const viewerCaption = document.getElementById('viewer-caption');
+      const viewerClose = document.getElementById('viewer-close');
+      const paintingGallery = document.getElementById('painting-gallery');
+      const galleryImage = document.getElementById('gallery-image');
+      const galleryCaption = document.getElementById('gallery-caption');
+      const galleryCount = document.getElementById('gallery-count');
+      const galleryThumbnails = document.getElementById('gallery-thumbnails');
+      const viewSwitch = document.getElementById('view-switch');
+      const modeSpace = document.getElementById('mode-space');
+      const modeGallery = document.getElementById('mode-gallery');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!window.THREE) {
+        loading.textContent = '3D 引擎未能载入';
+        return;
+      }
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.outputEncoding = THREE.sRGBEncoding;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.04;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      sceneRoot.appendChild(renderer.domElement);
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x162734);
+      scene.fog = new THREE.FogExp2(0x1d3344, 0.014);
+
+      const camera = new THREE.PerspectiveCamera(63, window.innerWidth / window.innerHeight, 0.08, 70);
+      camera.rotation.order = 'YXZ';
+
+      const start = { x: 0, y: 1.64, z: 7.3, yaw: 0, pitch: -0.015 };
+      let yaw = start.yaw;
+      let pitch = start.pitch;
+      camera.position.set(start.x, start.y, start.z);
+      camera.rotation.set(pitch, yaw, 0);
+
+      const wallBlue = new THREE.MeshStandardMaterial({ color: 0x355f83, roughness: 0.96, metalness: 0 });
+      const ceilingDark = new THREE.MeshStandardMaterial({ color: 0x20292e, roughness: 0.87, metalness: 0.05 });
+      const railWhite = new THREE.MeshStandardMaterial({ color: 0xd8dce0, roughness: 0.55, metalness: 0.35 });
+      const shadowMaterial = new THREE.MeshStandardMaterial({ color: 0x10181c, roughness: 0.72 });
+      const woodMaterial = new THREE.MeshStandardMaterial({ map: makeFloorTexture(), roughness: 0.82, metalness: 0 });
+
+      const room = new THREE.Group();
+      scene.add(room);
+
+      addBox(7.2, 0.12, 18.2, 0, -0.06, 0, woodMaterial, true);
+      addBox(0.14, 4.55, 18.2, -3.57, 2.275, 0, wallBlue, true);
+      addBox(0.14, 4.55, 18.2, 3.57, 2.275, 0, wallBlue, true);
+      addBox(7.2, 4.55, 0.14, 0, 2.275, -9.07, wallBlue, true);
+      addBox(7.2, 0.14, 18.2, 0, 4.86, 0, ceilingDark, false);
+
+      const divider = addBox(2.55, 4.5, 0.2, 1.42, 2.25, -5.15, wallBlue, true);
+      divider.userData.isDivider = true;
+
+      for (const x of [-2.35, 2.35]) {
+        addBox(0.045, 0.045, 16.2, x, 4.54, -0.1, railWhite, false);
+        for (const z of [6.3, 3.6, 0.9, -1.8, -4.5, -7.2]) addTrackLight(x, z, x < 0 ? 'left' : 'right');
+      }
+
+      for (const z of [-6.4, -1.3, 3.8]) addCeilingBeam(z);
+
+      const artMeshes = [];
+      const galleryWorks = [];
+      let galleryIndex = 0;
+      const imageLoader = new THREE.TextureLoader();
+      const assets = './assets/artworks/';
+      const embeddedTextures = window.location.protocol === 'file:' ? window.TESTMODEL_EMBEDDED_TEXTURES || {} : {};
+      const textureSource = (file) => embeddedTextures[file] || assets + file;
+
+      const leftWorks = [
+        ['img_3062.jpg', 5.4, 1.55, 'IMG 3062'],
+        ['img_3069.jpg', 2.65, 1.55, 'IMG 3069'],
+        ['img_3070.jpg', 0.25, 1.28, 'IMG 3070'],
+        ['img_3071.jpg', -1.95, 1.16, 'IMG 3071'],
+        ['img_3072.jpg', -3.85, 1.3, 'IMG 3072']
+      ];
+
+      const rightWorks = [
+        ['small_01.jpg', 5.8, 0.95, '小幅作品 01'],
+        ['small_02.jpg', 3.9, 0.9, '小幅作品 02'],
+        ['small_03.jpg', 2.05, 1.14, '小幅作品 03'],
+        ['img_3057.jpg', -0.45, 1.72, 'IMG 3057'],
+        ['img_3058.jpg', -3.05, 1.72, 'IMG 3058']
+      ];
+
+      leftWorks.forEach(([file, z, width, label]) => addArtwork('left', z, width, file, label));
+      rightWorks.forEach(([file, z, width, label]) => addArtwork('right', z, width, file, label));
+
+      addArtwork('right', -6.75, 1.48, 'img_3063.jpg', 'IMG 3063');
+
+      addArtwork('back', -8.98, 1.16, 'img_3065.jpg', 'IMG 3065', -2.48, 2.5);
+      addArtwork('back', -8.98, 0.96, 'img_3067.jpg', 'IMG 3067', -0.86, 2.45);
+      addArtwork('back', -8.98, 1.04, 'img_3060.jpg', 'IMG 3060', 0.72, 2.46);
+      addArtwork('back', -8.98, 1.12, 'img_3066.jpg', 'IMG 3066', 2.33, 2.47);
+
+      addExhibitionLettering();
+      addVessel();
+      addSculpture();
+      addAtmosphere();
+      addLighting();
+
+      const keys = new Set();
+      const raycaster = new THREE.Raycaster();
+      const pointer = new THREE.Vector2(0, 0);
+      const clock = new THREE.Clock();
+      let isDragging = false;
+      let didDrag = false;
+      let lastX = 0;
+      let lastY = 0;
+      let entered = false;
+      let hoverArtwork = null;
+      let focusedArtwork = null;
+      let focusAnimation = null;
+
+      // Follow the right wall, back wall, then return along the left wall.
+      const wallOrder = { right: 0, back: 1, left: 2 };
+      galleryWorks.sort((a, b) => wallOrder[a.side] - wallOrder[b.side] ||
+        (a.side === 'back' ? b.x - a.x : a.side === 'left' ? a.z - b.z : b.z - a.z));
+      galleryWorks.forEach((work, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.setAttribute('aria-label', work.label);
+        const image = document.createElement('img');
+        image.src = assets + work.file;
+        image.alt = '';
+        const caption = document.createElement('span');
+        caption.textContent = String(index + 1).padStart(2, '0');
+        button.append(image, caption);
+        button.addEventListener('click', () => selectPainting(index));
+        galleryThumbnails.appendChild(button);
+      });
+      selectPainting(0);
+
+      renderer.domElement.addEventListener('pointerdown', (event) => {
+        if (!entered || event.button !== 0) return;
+        pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+        pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        updateHover();
+        isDragging = true;
+        didDrag = false;
+        lastX = event.clientX;
+        lastY = event.clientY;
+        sceneRoot.classList.add('is-dragging');
+        renderer.domElement.setPointerCapture(event.pointerId);
+      });
+
+      renderer.domElement.addEventListener('pointermove', (event) => {
+        pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+        pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        if (!isDragging) return;
+        const dx = event.clientX - lastX;
+        const dy = event.clientY - lastY;
+        if (Math.abs(dx) + Math.abs(dy) > 2) {
+          didDrag = true;
+          focusedArtwork = null;
+        }
+        yaw -= dx * 0.0032;
+        pitch -= dy * 0.0025;
+        pitch = THREE.MathUtils.clamp(pitch, -1.05, 1.05);
+        lastX = event.clientX;
+        lastY = event.clientY;
+        focusAnimation = null;
+      });
+
+      renderer.domElement.addEventListener('pointerup', (event) => {
+        if (!isDragging) return;
+        isDragging = false;
+        sceneRoot.classList.remove('is-dragging');
+        renderer.domElement.releasePointerCapture(event.pointerId);
+        if (!didDrag && hoverArtwork) {
+          if (focusedArtwork === hoverArtwork) openArtwork(hoverArtwork);
+          else {
+            focusedArtwork = hoverArtwork;
+            focusOnArtwork(hoverArtwork);
+          }
+        }
+      });
+
+      renderer.domElement.addEventListener('wheel', (event) => {
+        if (!entered) return;
+        event.preventDefault();
+        focusAnimation = null;
+        focusedArtwork = null;
+        moveForward(-event.deltaY * 0.0028);
+      }, { passive: false });
+
+      window.addEventListener('keydown', (event) => {
+        if (artworkViewer.open) return;
+        if (event.target.closest('textarea, input, [contenteditable="true"]')) return;
+        if (!paintingGallery.hidden) {
+          if (event.code === 'ArrowLeft' || event.code === 'ArrowRight') {
+            event.preventDefault();
+            selectPainting(galleryIndex + (event.code === 'ArrowLeft' ? -1 : 1));
+          }
+          return;
+        }
+        if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.code)) {
+          event.preventDefault();
+          keys.add(event.code);
+          focusAnimation = null;
+          focusedArtwork = null;
+        }
+      });
+
+      window.addEventListener('keyup', (event) => keys.delete(event.code));
+
+      enterButton.addEventListener('click', () => {
+        setView(false);
+      });
+      document.getElementById('enter-gallery').addEventListener('click', () => setView(true));
+      modeSpace.addEventListener('click', () => setView(false));
+      modeGallery.addEventListener('click', () => setView(true));
+      document.getElementById('gallery-prev').addEventListener('click', () => selectPainting(galleryIndex - 1));
+      document.getElementById('gallery-next').addEventListener('click', () => selectPainting(galleryIndex + 1));
+      document.getElementById('gallery-open').addEventListener('click', () => openArtwork({ userData: galleryWorks[galleryIndex] }));
+      let lastGalleryWheel = 0;
+      document.getElementById('gallery-open').addEventListener('wheel', (event) => {
+        event.preventDefault();
+        if (artworkViewer.open || Math.abs(event.deltaY) < 8 || performance.now() - lastGalleryWheel < 350) return;
+        lastGalleryWheel = performance.now();
+        selectPainting(galleryIndex + (event.deltaY > 0 ? 1 : -1));
+      }, { passive: false });
+
+      resetButton.addEventListener('click', resetCamera);
+      viewerClose.addEventListener('click', () => artworkViewer.close());
+      artworkViewer.addEventListener('click', (event) => {
+        if (event.target === artworkViewer) artworkViewer.close();
+      });
+      window.addEventListener('resize', onResize);
+
+      setTimeout(() => loading.classList.add('is-done'), 700);
+      animate();
+
+      function addBox(width, height, depth, x, y, z, material, receiveShadow) {
+        const mesh = new THREE.Mesh(new THREE.BoxGeometry(width, height, depth), material);
+        mesh.position.set(x, y, z);
+        mesh.receiveShadow = receiveShadow;
+        room.add(mesh);
+        return mesh;
+      }
+
+      function addCeilingBeam(z) {
+        addBox(7.05, 0.16, 0.16, 0, 4.68, z, ceilingDark, false);
+      }
+
+      function addTrackLight(x, z, side) {
+        const group = new THREE.Group();
+        group.position.set(x, 4.44, z);
+        const body = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.11, 0.32, 12), railWhite);
+        body.rotation.z = side === 'left' ? -0.62 : 0.62;
+        body.position.x = side === 'left' ? -0.07 : 0.07;
+        body.position.y = -0.12;
+        group.add(body);
+        room.add(group);
+      }
+
+      function addArtwork(side, z, width, file, label, customX, customY) {
+        const source = file.startsWith('small_') ? 'IMG_3059.JPG' : file.replace('.jpg', '.JPG').toUpperCase();
+        galleryWorks.push({ file, label, side, z, x: customX || 0, source });
+        imageLoader.load(textureSource(file), (texture) => {
+          texture.encoding = THREE.sRGBEncoding;
+          texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+          const aspect = texture.image.width / texture.image.height;
+          const height = width / aspect;
+          const backing = new THREE.Mesh(new THREE.BoxGeometry(width + 0.06, height + 0.06, 0.07), shadowMaterial);
+          const image = new THREE.Mesh(
+            new THREE.PlaneGeometry(width, height),
+            new THREE.MeshBasicMaterial({ map: texture, toneMapped: false })
+          );
+
+          const y = customY || 2.48;
+          if (side === 'left') {
+            backing.position.set(-3.46, y, z);
+            backing.rotation.y = Math.PI / 2;
+            image.position.set(-3.405, y, z);
+            image.rotation.y = Math.PI / 2;
+          } else if (side === 'right') {
+            backing.position.set(3.46, y, z);
+            backing.rotation.y = -Math.PI / 2;
+            image.position.set(3.405, y, z);
+            image.rotation.y = -Math.PI / 2;
+          } else {
+            const x = customX || 0;
+            const faceZ = side === 'divider' ? -4.995 : -8.99;
+            backing.position.set(x, y, faceZ - 0.045);
+            image.position.set(x, y, faceZ + 0.002);
+          }
+
+          backing.castShadow = true;
+          image.userData = { isArtwork: true, label, side, backing, file };
+          room.add(backing, image);
+          artMeshes.push(image);
+        }, undefined, () => {
+          console.warn('Artwork texture failed:', file);
+        });
+      }
+
+      function addExhibitionLettering() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1024;
+        canvas.height = 1536;
+        const context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = 'rgba(229, 240, 244, 0.88)';
+        context.textAlign = 'center';
+        context.font = '400 118px serif';
+        context.fillText('喜 寿 纪 念', 512, 320);
+        context.font = '400 39px serif';
+        context.fillText('Seventy-seventh Birthday Celebration', 512, 385);
+        context.font = '400 60px sans-serif';
+        context.fillText('宫崎骏动画场景原画师', 512, 645);
+        context.font = '400 31px serif';
+        context.fillText("Concept Artist for Hayao Miyazaki's Animations", 512, 700);
+        context.font = '400 74px serif';
+        context.fillText('井上直久新作展', 512, 970);
+        context.font = '400 32px serif';
+        context.fillText("Naohisa Inoue's New Works Exhibition", 512, 1025);
+        context.font = '400 40px serif';
+        context.fillText('2026.7.7 至 8.17', 512, 1260);
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.encoding = THREE.sRGBEncoding;
+        const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true, toneMapped: false });
+        const lettering = new THREE.Mesh(new THREE.PlaneGeometry(1.9, 2.85), material);
+        lettering.position.set(1.42, 2.23, -5.035);
+        room.add(lettering);
+      }
+
+      function addVessel() {
+        const group = new THREE.Group();
+        const ceramic = new THREE.MeshStandardMaterial({ color: 0xe3ded2, roughness: 0.28, metalness: 0.02 });
+        const cobalt = new THREE.MeshStandardMaterial({ color: 0x163b55, roughness: 0.5 });
+        const body = new THREE.Mesh(new THREE.SphereGeometry(0.35, 28, 18), ceramic);
+        body.scale.y = 1.05;
+        const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.28, 0.22, 28), ceramic);
+        neck.position.y = 0.35;
+        const rim = new THREE.Mesh(new THREE.TorusGeometry(0.2, 0.025, 10, 32), cobalt);
+        rim.rotation.x = Math.PI / 2;
+        rim.position.y = 0.47;
+        group.add(body, neck, rim);
+        group.position.set(-2.75, 0.43, -7.6);
+        group.scale.setScalar(0.85);
+        room.add(group);
+      }
+
+      function addSculpture() {
+        const group = new THREE.Group();
+        const oak = new THREE.MeshStandardMaterial({ color: 0x8c5e3f, roughness: 0.76 });
+        const plum = new THREE.MeshStandardMaterial({ color: 0x5a2631, roughness: 0.72 });
+        const ochre = new THREE.MeshStandardMaterial({ color: 0xb97828, roughness: 0.74 });
+        const skin = new THREE.MeshStandardMaterial({ color: 0xd6a17c, roughness: 0.8 });
+        const base = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.46, 0.82, 28), oak);
+        base.position.y = 0.41;
+        const torso = new THREE.Mesh(new THREE.SphereGeometry(0.23, 20, 14), ochre);
+        torso.scale.y = 1.55;
+        torso.position.y = 1.04;
+        const head = new THREE.Mesh(new THREE.SphereGeometry(0.17, 20, 14), skin);
+        head.position.y = 1.46;
+        const cap = new THREE.Mesh(new THREE.TorusKnotGeometry(0.13, 0.045, 48, 8), plum);
+        cap.position.y = 1.63;
+        cap.scale.y = 0.65;
+        group.add(base, torso, head, cap);
+        group.position.set(2.88, 0, -4.1);
+        room.add(group);
+      }
+
+      function addAtmosphere() {
+        const count = reducedMotion ? 110 : 420;
+        const positions = new Float32Array(count * 3);
+        for (let i = 0; i < count; i += 1) {
+          positions[i * 3] = THREE.MathUtils.randFloatSpread(6.4);
+          positions[i * 3 + 1] = THREE.MathUtils.randFloat(0.4, 4.5);
+          positions[i * 3 + 2] = THREE.MathUtils.randFloat(-8.6, 8.6);
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const material = new THREE.PointsMaterial({ color: 0xc8e5eb, size: 0.012, transparent: true, opacity: 0.38, depthWrite: false });
+        const dust = new THREE.Points(geometry, material);
+        dust.name = 'dust';
+        scene.add(dust);
+      }
+
+      function addLighting() {
+        scene.add(new THREE.HemisphereLight(0x8399aa, 0x4b3228, 0.42));
+        const ambient = new THREE.AmbientLight(0x8297a6, 0.17);
+        scene.add(ambient);
+
+        const spots = [];
+        for (const side of [-1, 1]) {
+          for (const z of [5.3, 1.9, -1.6, -5.2]) {
+            const light = new THREE.SpotLight(0xffd8ad, 0.84, 7.5, 0.5, 0.78, 1.4);
+            light.position.set(side * 2.3, 4.4, z + 0.4);
+            light.target.position.set(side * 3.5, 2.15, z);
+            scene.add(light, light.target);
+            spots.push(light);
+          }
+        }
+        scene.userData.spots = spots;
+
+        const endLight = new THREE.SpotLight(0xffd8ad, 0.92, 8, 0.52, 0.75, 1.3);
+        endLight.position.set(0, 4.5, -6.7);
+        endLight.target.position.set(0, 2.3, -9);
+        scene.add(endLight, endLight.target);
+      }
+
+      function makeFloorTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1024;
+        canvas.height = 1024;
+        const context = canvas.getContext('2d');
+        context.fillStyle = '#6f5849';
+        context.fillRect(0, 0, 1024, 1024);
+        const plankWidth = 128;
+        const plankHeight = 340;
+        for (let row = 0; row < 4; row += 1) {
+          const offset = row % 2 ? plankWidth / 2 : 0;
+          for (let x = -plankWidth; x < 1024 + plankWidth; x += plankWidth) {
+            const px = x + offset;
+            const py = row * plankHeight;
+            const shade = 80 + ((x / plankWidth + row * 7) % 4) * 5;
+            context.fillStyle = `rgb(${shade + 24}, ${shade + 5}, ${shade - 7})`;
+            context.fillRect(px + 1, py + 1, plankWidth - 2, plankHeight - 2);
+            context.strokeStyle = 'rgba(31, 22, 18, 0.26)';
+            context.strokeRect(px, py, plankWidth, plankHeight);
+            context.strokeStyle = 'rgba(230, 200, 168, 0.065)';
+            for (let line = 16; line < plankWidth; line += 17) {
+              context.beginPath();
+              context.moveTo(px + line, py + 10);
+              context.bezierCurveTo(px + line + 7, py + 90, px + line - 5, py + 210, px + line + 2, py + plankHeight - 8);
+              context.stroke();
+            }
+          }
+        }
+        const texture = new THREE.CanvasTexture(canvas);
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(3.4, 2.2);
+        texture.encoding = THREE.sRGBEncoding;
+        texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        return texture;
+      }
+
+      function moveForward(distance) {
+        const direction = new THREE.Vector3(-Math.sin(yaw), 0, -Math.cos(yaw));
+        tryMove(direction.multiplyScalar(distance));
+      }
+
+      function moveSide(distance) {
+        const direction = new THREE.Vector3(Math.cos(yaw), 0, -Math.sin(yaw));
+        tryMove(direction.multiplyScalar(distance));
+      }
+
+      function tryMove(delta) {
+        const next = camera.position.clone().add(delta);
+        next.x = THREE.MathUtils.clamp(next.x, -3.12, 3.12);
+        next.z = THREE.MathUtils.clamp(next.z, -8.46, 8.46);
+
+        const nearDivider = next.z < -4.82 && next.z > -5.48 && next.x > 0.02 && next.x < 2.82;
+        if (nearDivider) {
+          if (Math.abs(delta.z) > Math.abs(delta.x)) next.z = camera.position.z;
+          else next.x = camera.position.x;
+        }
+        camera.position.copy(next);
+      }
+
+      function focusOnArtwork(artwork) {
+        const side = artwork.userData.side;
+        const target = new THREE.Vector3();
+        if (side === 'left') target.set(-1.55, 1.64, artwork.position.z);
+        else if (side === 'right') target.set(1.55, 1.64, artwork.position.z);
+        else target.set(artwork.position.x, 1.64, artwork.position.z + 2.0);
+
+        const direction = artwork.position.clone().sub(target);
+        const targetYaw = Math.atan2(-direction.x, -direction.z);
+        const horizontal = Math.hypot(direction.x, direction.z);
+        const targetPitch = -Math.atan2(direction.y - 1.64, horizontal);
+        focusAnimation = {
+          startTime: performance.now(),
+          duration: reducedMotion ? 1 : 950,
+          fromPosition: camera.position.clone(),
+          toPosition: target,
+          fromYaw: yaw,
+          toYaw: nearestAngle(yaw, targetYaw),
+          fromPitch: pitch,
+          toPitch: targetPitch
+        };
+      }
+
+      function openArtwork(artwork) {
+        const source = artwork.userData.source || (artwork.userData.file.startsWith('small_') ? 'IMG_3059.JPG' : artwork.userData.file.replace('.jpg', '.JPG').toUpperCase());
+        viewerImage.src = './reference/blue%20sketch/' + source;
+        viewerImage.alt = artwork.userData.label + ' 原图';
+        viewerCaption.textContent = artwork.userData.label + ' · 现场原片 ' + source.replace('.JPG', '') + (artwork.userData.file.startsWith('small_') ? '（三幅合照）' : '');
+        artworkViewer.showModal();
+      }
+
+      function setView(gallery) {
+        intro.hidden = true;
+        viewSwitch.hidden = false;
+        paintingGallery.hidden = !gallery;
+        entered = !gallery;
+        keys.clear();
+        focusAnimation = null;
+        focusedArtwork = null;
+        hoverArtwork = null;
+        sceneRoot.inert = gallery;
+        interfaceLayer.inert = gallery;
+        interfaceLayer.classList.add('is-visible');
+        interfaceLayer.setAttribute('aria-hidden', String(gallery));
+        document.body.classList.toggle('is-gallery', gallery);
+        modeSpace.setAttribute('aria-pressed', String(!gallery));
+        modeGallery.setAttribute('aria-pressed', String(gallery));
+        if (gallery) document.getElementById('gallery-open').focus();
+        else modeSpace.focus();
+      }
+
+      function selectPainting(index) {
+        galleryIndex = (index + galleryWorks.length) % galleryWorks.length;
+        const work = galleryWorks[galleryIndex];
+        galleryImage.src = work.file.startsWith('small_') ? assets + work.file : './reference/blue%20sketch/' + work.source;
+        galleryImage.alt = work.label;
+        galleryCaption.textContent = work.label + (work.file.startsWith('small_') ? ' · 来自 IMG_3059 合照' : '');
+        galleryCount.textContent = String(galleryIndex + 1).padStart(2, '0') + ' / ' + galleryWorks.length;
+        [...galleryThumbnails.children].forEach((button, i) => button.setAttribute('aria-current', String(i === galleryIndex)));
+        if (!paintingGallery.hidden) galleryThumbnails.children[galleryIndex].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      }
+
+      function nearestAngle(from, to) {
+        while (to - from > Math.PI) to -= Math.PI * 2;
+        while (to - from < -Math.PI) to += Math.PI * 2;
+        return to;
+      }
+
+      function updateFocus(now) {
+        if (!focusAnimation) return;
+        const raw = Math.min((now - focusAnimation.startTime) / focusAnimation.duration, 1);
+        const eased = 1 - Math.pow(1 - raw, 5);
+        camera.position.lerpVectors(focusAnimation.fromPosition, focusAnimation.toPosition, eased);
+        yaw = THREE.MathUtils.lerp(focusAnimation.fromYaw, focusAnimation.toYaw, eased);
+        pitch = THREE.MathUtils.lerp(focusAnimation.fromPitch, focusAnimation.toPitch, eased);
+        if (raw === 1) focusAnimation = null;
+      }
+
+      function updateKeyboard(delta) {
+        if (!entered) return;
+        const speed = delta * 2.25;
+        if (keys.has('KeyW') || keys.has('ArrowUp')) moveForward(speed);
+        if (keys.has('KeyS') || keys.has('ArrowDown')) moveForward(-speed);
+        if (keys.has('KeyA') || keys.has('ArrowLeft')) moveSide(-speed);
+        if (keys.has('KeyD') || keys.has('ArrowRight')) moveSide(speed);
+      }
+
+      function updateHover() {
+        if (!entered || isDragging) return;
+        raycaster.setFromCamera(pointer, camera);
+        const hit = raycaster.intersectObjects(artMeshes, false)[0];
+        hoverArtwork = hit && hit.distance < 6 ? hit.object : null;
+        crosshair.classList.toggle('is-active', Boolean(hoverArtwork));
+        sceneRoot.classList.toggle('is-pointing', Boolean(hoverArtwork));
+        artLabel.classList.toggle('is-visible', Boolean(hoverArtwork));
+        if (hoverArtwork) {
+          const action = focusedArtwork === hoverArtwork ? '再次点击查看原图' : '点击靠近';
+          artLabel.textContent = hoverArtwork.userData.label + ' · ' + action;
+        }
+      }
+
+      function resetCamera() {
+        focusedArtwork = null;
+        focusAnimation = {
+          startTime: performance.now(),
+          duration: reducedMotion ? 1 : 1000,
+          fromPosition: camera.position.clone(),
+          toPosition: new THREE.Vector3(start.x, start.y, start.z),
+          fromYaw: yaw,
+          toYaw: nearestAngle(yaw, start.yaw),
+          fromPitch: pitch,
+          toPitch: start.pitch
+        };
+      }
+
+      function onResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+      }
+
+      function animate(now = performance.now()) {
+        requestAnimationFrame(animate);
+        const delta = Math.min(clock.getDelta(), 0.04);
+        updateKeyboard(delta);
+        updateFocus(now);
+        updateHover();
+        camera.rotation.set(pitch, yaw, 0);
+
+        if (!reducedMotion) {
+          const dust = scene.getObjectByName('dust');
+          if (dust) dust.rotation.y = Math.sin(now * 0.00007) * 0.04;
+          const spots = scene.userData.spots || [];
+          spots.forEach((light, index) => {
+            light.intensity = 0.82 + Math.sin(now * 0.00035 + index * 1.7) * 0.035;
+          });
+        }
+
+        renderer.render(scene, camera);
+      }
+    })();
+  </script>
+  <script src="../shared/exhibition-tools.js?v=20261001-home" data-exhibition-id="blue-sketch" data-exhibition-title="喜寿纪念"></script>
+</body>
+</html>

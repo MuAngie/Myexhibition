@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>空间复原 02 · White Hall / Dark Rooms</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css?v=20261001-home">
+  <link rel="stylesheet" href="../shared/exhibition-tools.css">
+</head>
+<body>
+  <main id="scene" aria-label="可用鼠标漫游的多空间展览模型"></main>
+  <div id="grain" aria-hidden="true"></div>
+
+  <section id="intro" aria-labelledby="title">
+    <div class="intro-index" aria-hidden="true">02</div>
+    <div class="intro-copy">
+      <p class="eyebrow">PHOTO-INFORMED SPATIAL RECONSTRUCTION</p>
+      <h1 id="title">白厅<br><em>与</em>暗室</h1>
+      <p class="subtitle">依据 18 张现场照片重建的三段空间：裸露混凝土与日光构成白厅，黑门之后，作品本身成为暗室的光源。</p>
+      <button id="enter" type="button">进入白厅 <span aria-hidden="true">↗</span></button>
+    </div>
+    <ol class="intro-zones" aria-label="空间章节">
+      <li><span>01</span><strong>白厅</strong><small>混凝土、天光、柱面长卷</small></li>
+      <li><span>02</span><strong>暗室</strong><small>黑色狭室、单幅发光作品</small></li>
+      <li><span>03</span><strong>楼上</strong><small>楼梯、红光、狭长通道</small></li>
+    </ol>
+  </section>
+
+  <div id="interface" aria-hidden="true">
+    <header class="identity">
+      <strong>空间复原 · 02</strong>
+      <span id="zone-name">白厅 / WHITE HALL</span>
+    </header>
+
+    <nav class="zone-nav" aria-label="空间切换">
+      <button class="zone-button is-current" data-zone="white" type="button"><span>01</span>白厅</button>
+      <button class="zone-button" data-zone="dark" type="button"><span>02</span>暗室</button>
+      <button class="zone-button" data-zone="upper" type="button"><span>03</span>楼上</button>
+    </nav>
+
+    <div class="controls" aria-label="漫游控制说明">
+      <span><i></i>拖拽环视</span>
+      <span>滚轮前进 / 后退</span>
+      <span>WASD 移动</span>
+      <span>作品再次点击看原图</span>
+    </div>
+
+    <div id="crosshair" aria-hidden="true"></div>
+    <div id="target-label" role="status" aria-live="polite"></div>
+    <button id="reset" type="button">回到本空间入口</button>
+  </div>
+
+  <div id="loading">正在读取空间证据</div>
+  <div id="transition" aria-hidden="true"><span></span></div>
+
+  <dialog id="viewer" aria-labelledby="viewer-caption">
+    <div class="viewer-content">
+      <button id="viewer-close" type="button">关闭</button>
+      <img id="viewer-image" alt="">
+      <p id="viewer-caption"></p>
+    </div>
+  </dialog>
+
+  <script src="./assets/embedded-textures.js"></script>
+  <script src="./vendor/three.min.js"></script>
+  <script src="./app.js?v=offline-1"></script>
+  <script src="../shared/exhibition-tools.js?v=20261001-home" data-exhibition-id="white-dark-rooms" data-exhibition-title="白厅与暗室"></script>
+</body>
+</html>

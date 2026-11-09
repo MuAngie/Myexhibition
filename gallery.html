@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>展览墙 · 展览体验馆</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./exhibition-hall/styles.css?v=20261001-switch">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="回到展览体验馆主入口"><span aria-hidden="true">○</span>展览体验馆</a>
+    <nav class="header-links" aria-label="浏览方式与展览目录">
+      <a class="header-archive" href="./index.html">泡泡模式 ↗</a>
+      <a class="header-archive" href="#archive">全部展览 ↓</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top" aria-labelledby="page-title">
+    <div class="hero-copy">
+      <p>A PERSONAL EXHIBITION ARCHIVE</p>
+      <h1 id="page-title">展览体验馆</h1>
+      <div class="hero-note">
+        <span>把走过的空间、看过的作品，以及留下的感受放在一起。</span>
+        <a href="#exhibition-wall">进入展览墙 <i aria-hidden="true">↓</i></a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="exhibition-wall" id="exhibition-wall" aria-label="展览入口">
+      <div class="wall-list" id="exhibition-wall-list"></div>
+    </section>
+
+    <section class="archive" id="archive" aria-labelledby="archive-title">
+      <header class="archive-header">
+        <div>
+          <p>EXHIBITION INDEX</p>
+          <h2 id="archive-title">全部展览</h2>
+        </div>
+        <p class="archive-count"><span data-exhibition-count>00</span> 次到访</p>
+      </header>
+      <div class="archive-list" id="archive-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p><span data-exhibition-count>00</span> 次到访仍各自独立，只在这里相遇。</p>
+    <a href="#top">返回顶部 ↑</a>
+  </footer>
+
+  <noscript>请启用 JavaScript 以浏览展览目录。</noscript>
+  <script src="./exhibition-hall/exhibitions.js?v=20261109-zande11-5776"></script>
+  <script src="./exhibition-hall/app.js?v=20261010-visit"></script>
+</body>
+</html>

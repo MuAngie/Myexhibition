@@ -1,0 +1,150 @@
+:root {
+  color-scheme: dark;
+  --void: oklch(15% .018 264);
+  --ink: oklch(93% .012 253);
+  --quiet: oklch(70% .024 257);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-width: 280px;
+  background: var(--void);
+  color: var(--ink);
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 22% 44%, oklch(29% .055 264 / .28), transparent 48%),
+    radial-gradient(ellipse at 80% 68%, oklch(27% .052 303 / .2), transparent 44%);
+}
+a { color: inherit; }
+.starlight { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.sparkles { position: fixed; inset: 0; pointer-events: none; }
+.sparkle { position: absolute; left: var(--star-x); top: var(--star-y); width: var(--star-size); height: var(--star-size); border-radius: 50%; background: oklch(91% .045 249); box-shadow: 0 0 8px 2px oklch(75% .08 252 / .35); opacity: .55; animation: twinkle var(--star-duration) ease-in-out var(--star-delay) infinite alternate; }
+.sparkle:nth-child(5n)::before, .sparkle:nth-child(5n)::after { content: ""; position: absolute; inset: 45% -140%; background: oklch(88% .025 252 / .6); }
+.sparkle:nth-child(5n)::after { transform: rotate(90deg); }
+.floating-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px clamp(22px, 4vw, 64px);
+}
+.brand { display: flex; align-items: center; gap: 10px; font: 15px "Songti SC", STSong, SimSun, serif; letter-spacing: .12em; text-decoration: none; }
+.brand > span { font: 28px Georgia, serif; color: oklch(81% .038 254); }
+.return-link { font-size: 11px; color: var(--quiet); text-decoration: none; padding: 8px 0; }
+.return-link > span { margin-left: 12px; }
+.return-link:hover { color: var(--ink); }
+.brand:focus-visible, .return-link:focus-visible { outline: 1px solid var(--ink); outline-offset: 7px; }
+.intro { position: relative; z-index: 1; margin: 10px clamp(22px, 4vw, 64px) 0; }
+h1 { display: flex; align-items: baseline; gap: 22px; margin: 0; font: 400 clamp(32px, 3.2vw, 48px)/1.25 "Songti SC", STSong, SimSun, serif; letter-spacing: .12em; }
+h1 > span { font: 11px "Microsoft YaHei", sans-serif; color: var(--quiet); letter-spacing: .15em; }
+.intro > p { margin: 15px 0 0; font-size: 11px; letter-spacing: .08em; color: var(--quiet); }
+.constellation {
+  position: relative;
+  overflow-x: clip;
+  min-height: 620px;
+  margin: 0 auto;
+  width: min(100%, 1800px);
+  --pointer-x: 0px;
+  --pointer-y: 0px;
+}
+.exhibit {
+  --base-size: clamp(110px, 14vw, 190px);
+  --size: calc(var(--base-size) * var(--scale));
+  --light: oklch(80% .1 244);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max(180px, calc(var(--size) * 1.2));
+  padding-top: 28px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  animation: levitate var(--duration) ease-in-out var(--delay) infinite alternate;
+}
+.bubble-space { position: relative; width: var(--size); height: var(--size); }
+.aura {
+  position: absolute;
+  inset: -60%;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in oklch, var(--light) 17%, transparent), transparent);
+  opacity: .46;
+  transform: scale(.82);
+  transition: opacity 650ms var(--ease), transform 800ms var(--ease);
+}
+.bubble {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklch, var(--light) 52%, transparent);
+  background: radial-gradient(circle at 68% 78%, color-mix(in oklch, var(--light) 10%, transparent), transparent 64%);
+  box-shadow: inset 0 0 22px color-mix(in oklch, var(--light) 16%, transparent), inset -7px -9px 24px oklch(9% .02 264 / .6), 0 0 18px color-mix(in oklch, var(--light) 13%, transparent);
+  transform: translate(var(--pointer-x), var(--pointer-y));
+  transition: transform 900ms var(--ease), border-color 450ms var(--ease), box-shadow 650ms var(--ease);
+}
+.bubble::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(ellipse 16% 9% at 29% 20%, oklch(97% .008 250 / .62), transparent 85%),
+    radial-gradient(ellipse 36% 25% at 30% 24%, oklch(94% .015 250 / .16), transparent 90%),
+    radial-gradient(ellipse 33% 20% at 74% 86%, color-mix(in oklch, var(--light) 35%, transparent), transparent 90%),
+    radial-gradient(circle, transparent 55%, color-mix(in oklch, var(--light) 17%, transparent) 88%, color-mix(in oklch, var(--light) 48%, transparent) 100%);
+}
+.bubble::after { content: ""; position: absolute; inset: 6%; z-index: 2; border-radius: 50%; border: 1px solid transparent; border-top-color: oklch(97% .01 250 / .48); border-left-color: color-mix(in oklch, var(--light) 22%, transparent); transform: rotate(var(--glint-angle)); pointer-events: none; }
+.memory {
+  position: absolute;
+  inset: 7%;
+  overflow: hidden;
+  border-radius: 50%;
+  mask-image: radial-gradient(circle, oklch(15% .018 264) 30%, transparent 72%);
+}
+.memory img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .6; filter: saturate(.75) brightness(.9); transition: opacity 500ms var(--ease), filter 500ms var(--ease); }
+.reflection { position: absolute; width: 105%; height: 16px; bottom: -24px; left: -2.5%; background: radial-gradient(ellipse, color-mix(in oklch, var(--light) 20%, transparent), transparent 70%); filter: blur(5px); opacity: .4; transition: opacity 600ms var(--ease); }
+.caption { position: relative; margin-top: 36px; width: 100%; text-align: center; }
+.caption h2 { margin: 0; font: 400 clamp(16px, 1.5vw, 21px)/1.5 "Songti SC", STSong, SimSun, serif; letter-spacing: .04em; text-wrap: balance; transition: color 450ms var(--ease), text-shadow 450ms var(--ease); }
+.caption p { margin: 7px 0 0; font-size: 9px; letter-spacing: .08em; color: var(--quiet); }
+.enter { display: block; margin-top: 12px; font-size: 10px; letter-spacing: .1em; color: var(--light); opacity: 0; transform: translateY(4px); transition: opacity 350ms var(--ease), transform 450ms var(--ease); }
+.exhibit:is(:hover, :focus-visible) { z-index: 3; outline: none; }
+.exhibit:is(:hover, :focus-visible) .aura { opacity: 1; transform: scale(1.25); }
+.exhibit:is(:hover, :focus-visible) .bubble { border-color: var(--light); box-shadow: inset 0 0 28px color-mix(in oklch, var(--light) 25%, transparent), inset -7px -9px 24px oklch(9% .02 264 / .4), 0 0 24px color-mix(in oklch, var(--light) 45%, transparent), 0 0 65px color-mix(in oklch, var(--light) 18%, transparent); }
+.exhibit:is(:hover, :focus-visible) .memory img { opacity: .95; filter: saturate(1.08) brightness(1.1); }
+.exhibit:is(:hover, :focus-visible) .reflection { opacity: 1; }
+.exhibit:is(:hover, :focus-visible) .caption h2 { color: var(--light); text-shadow: 0 0 18px color-mix(in oklch, var(--light) 48%, transparent); }
+.exhibit:is(:hover, :focus-visible) .enter { opacity: 1; transform: translateY(0); }
+.exhibit:focus-visible .caption { outline: 1px solid var(--light); outline-offset: 8px; }
+footer { position: relative; display: flex; justify-content: space-between; gap: 24px; padding: 18px clamp(22px, 4vw, 64px) 28px; font-size: 10px; letter-spacing: .1em; color: var(--quiet); }
+.no-script { padding: 24px; }
+@keyframes levitate { from { transform: translate(-3px, calc(var(--float-range) * -1)) rotateZ(-1deg); } to { transform: translate(3px, var(--float-range)) rotateZ(1deg); } }
+@keyframes twinkle { from { opacity: .15; transform: scale(.7); } to { opacity: .9; transform: scale(1.15); } }
+@media (max-width: 600px) {
+  .exhibit { --base-size: 100px; --size: min(118px, calc(var(--base-size) * var(--scale))); width: 160px; }
+  .floating-header { padding-top: 22px; }
+  .brand { font-size: 13px; }
+  .return-link { font-size: 10px; }
+  .intro { margin-top: 18px; }
+  h1 { gap: 16px; }
+  h1 > span { font-size: 10px; }
+  .caption p { font-size: 8px; }
+  .enter { opacity: .8; transform: none; }
+  .interaction-hint { font-size: 0; }
+  .interaction-hint::after { content: "轻触进入展览"; font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .exhibit, .sparkle { animation: none; }
+  *, *::before, *::after { transition: none !important; }
+}

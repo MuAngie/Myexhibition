@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>物·质：四个空间</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css?v=36">
+  <link rel="stylesheet" href="../shared/exhibition-tools.css">
+</head>
+<body>
+  <main id="scene" aria-label="可用鼠标和键盘浏览的四区展览"></main>
+  <div id="grain" aria-hidden="true"></div>
+
+  <section id="intro" aria-labelledby="title">
+    <p class="intro-mark">空间记忆 03</p>
+    <div class="intro-copy">
+      <h1 id="title"><span>物</span><i>·</i><span>质</span></h1>
+      <p class="intro-lead">四个空间，从挑高序厅到白墙深处。<br>开阔、安静，材料在光下慢慢显形。</p>
+      <button id="enter" type="button">进入序厅 <span aria-hidden="true">→</span></button>
+    </div>
+    <ol class="intro-zones" aria-label="四个空间">
+      <li><span>01</span><strong>序厅</strong><small>挑高、蓝色折面、垂直装置</small></li>
+      <li><span>02</span><strong>展开</strong><small>白模、悬浮作品、逐件观看</small></li>
+      <li><span>03</span><strong>沉积</strong><small>白模、悬浮作品、连续切换</small></li>
+      <li><span>04</span><strong>回声</strong><small>前廊、格栅顶、中央展台</small></li>
+    </ol>
+    <p class="intro-note">依据现场照片重组空间记忆与作品观看，非工程测绘。</p>
+  </section>
+
+  <div id="interface" aria-hidden="true">
+    <header class="identity">
+      <strong>物·质</strong>
+      <span id="zone-name">序厅 / ATRIUM</span>
+    </header>
+
+    <nav class="zone-nav" aria-label="空间切换">
+      <button class="zone-button is-current" data-zone="atrium" type="button"><span>01</span>序厅</button>
+      <button class="zone-button" data-zone="hall1" type="button"><span>02</span>展开</button>
+      <button class="zone-button" data-zone="hall2" type="button"><span>03</span>沉积</button>
+      <button class="zone-button" data-zone="hall3" type="button"><span>04</span>回声</button>
+    </nav>
+
+    <div class="controls" aria-label="漫游控制说明">
+      <span><i></i>拖拽环视</span>
+      <span>滚轮前进 / 后退</span>
+      <span>WASD 移动</span>
+    </div>
+
+    <div id="crosshair" aria-hidden="true"></div>
+    <div id="target-label" role="status" aria-live="polite"></div>
+    <button id="reset" type="button">回到本区入口</button>
+  </div>
+
+  <section id="artwork-gallery" aria-label="展品优先作品陈列" aria-hidden="true">
+    <div class="gallery-heading">
+      <div>
+        <span id="gallery-zone-title">03 / 沉积</span>
+        <p id="gallery-description">白模空间随作品切换改变视角，14 张照片悬浮于前景。</p>
+      </div>
+      <strong><span id="gallery-artwork-number">01</span> / <span id="gallery-artwork-total">14</span></strong>
+    </div>
+
+    <div class="gallery-room">
+      <article class="gallery-wall" data-gallery-zone="hall1" data-count="12" aria-hidden="true">
+        <div class="gallery-works">
+          <button class="gallery-art" data-full="./reference/1/IMG_3244.JPG" data-name="IMG_3244" type="button"><img src="./assets/textures/hall1-work-bird.jpg?v=29" alt="IMG_3244 单张作品"><span>IMG_3244</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3249.JPG" data-name="IMG_3249" type="button"><img src="./assets/textures/hall1-work-textile.jpg?v=31" alt="IMG_3249 单张作品"><span>IMG_3249</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3251.JPG" data-name="IMG_3251" type="button"><img src="./assets/textures/hall1-work-blue-light.jpg?v=29" alt="IMG_3251 单张作品"><span>IMG_3251</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3254.JPG" data-name="IMG_3254" type="button"><img src="./assets/textures/hall1-work-small-sculpture.jpg?v=29" alt="IMG_3254 单张作品"><span>IMG_3254</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3255.JPG" data-name="IMG_3255" type="button"><img src="./assets/textures/hall1-work-window-blue.jpg?v=29" alt="IMG_3255 单张作品"><span>IMG_3255</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3257.JPG" data-name="IMG_3257" type="button"><img src="./assets/textures/hall1-work-window-red.jpg?v=29" alt="IMG_3257 单张作品"><span>IMG_3257</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3258.JPG" data-name="IMG_3258" type="button"><img src="./assets/textures/hall1-work-numbers.jpg?v=29" alt="IMG_3258 单张作品"><span>IMG_3258</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3263.JPG" data-name="IMG_3263" type="button"><img src="./assets/textures/hall1-work-black-metal.jpg?v=29" alt="IMG_3263 单张作品"><span>IMG_3263</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3265.JPG" data-name="IMG_3265" type="button"><img src="./assets/textures/hall1-work-green.jpg?v=29" alt="IMG_3265 单张作品"><span>IMG_3265</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3270.JPG" data-name="IMG_3270" type="button"><img src="./assets/textures/hall1-work-circle.jpg?v=30" alt="IMG_3270 单张作品"><span>IMG_3270</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3275.JPG" data-name="IMG_3275" type="button"><img src="./assets/textures/hall1-work-triptych.jpg?v=29" alt="IMG_3275 单张作品"><span>IMG_3275</span></button>
+          <button class="gallery-art" data-full="./reference/1/IMG_3277.JPG" data-name="IMG_3277" type="button"><img src="./assets/textures/hall1-work-blue-framed.jpg?v=29" alt="IMG_3277 单张作品"><span>IMG_3277</span></button>
+        </div>
+      </article>
+
+      <article class="gallery-wall is-current" data-gallery-zone="hall2" data-wall="0" data-count="5" aria-hidden="false">
+        <header><span>WALL 01</span><h2>褶皱与构架</h2></header>
+        <div class="gallery-works">
+          <button class="gallery-art" data-full="./reference/2/IMG_3206.JPG" data-name="IMG_3206" type="button"><img src="./assets/textures/hall2-relief.jpg?v=39" alt="IMG_3206 单张作品"><span>IMG_3206</span></button>
+          <button class="gallery-art" data-full="./reference/2/IMG_3209.JPG" data-name="IMG_3209" type="button"><img src="./assets/textures/hall2-black.jpg?v=39" alt="IMG_3209 单张作品"><span>IMG_3209</span></button>
+          <button class="gallery-art" data-full="./reference/2/IMG_3210.JPG" data-name="IMG_3210" type="button"><img src="./assets/textures/hall2-scaffold.jpg?v=39" alt="IMG_3210 单张作品"><span>IMG_3210</span></button>
+          <button class="gallery-art" data-full="./reference/2/IMG_3211.JPG" data-name="IMG_3211" type="button"><img src="./assets/textures/hall2-organic.jpg?v=39" alt="IMG_3211 单张作品"><span>IMG_3211</span></button>
+          <button class="gallery-art" data-full="./reference/2/IMG_3213.JPG" data-name="IMG_3213" type="button"><img src="./assets/textures/hall2-grid-object.jpg?v=39" alt="IMG_3213 单张作品"><span>IMG_3213</span></button>
+        </div>
+      </article>
+
+      <article class="gallery-wall is-current" data-gallery-zone="hall2" data-wall="1" data-count="4" aria-hidden="false">
+        <header><span>WALL 02</span><h2>色层与表面</h2></header>
+        <div class="gallery-works">
+          <button class="gallery-art" data-full="./reference/2/IMG_3215.JPG" data-name="IMG_3215" type="button"><img src="./assets/textures/hall2-grey-square.jpg?v=39" alt="IMG_3215 单张作品"><span>IMG_3215</span></button>
+          <button class="gallery-art" data-full="./reference/2/IMG_3218.JPG" data-name="IMG_3218" type="button"><img src="./assets/textures/hall2-color.jpg?v=39" alt="IMG_3218 单张作品"><span>IMG_3218</span></button>
+          <button class="gallery-art" data-full="./reference/2/IMG_3221.JPG" data-name="IMG_3221" type="button"><img src="./assets/textures/hall2-pink.jpg?v=39" alt="IMG_3221 单张作品"><span>IMG_3221</span></button>
+          <button class="gallery-art" data-full="./reference/2/IMG_3222.JPG" data-name="IMG_3222" type="button"><img src="./assets/textures/hall2-grey.jpg?v=39" alt="IMG_3222 单张作品"><span>IMG_3222</span></button>
+        </div>
+      </article>
+
+      <article class="gallery-wall is-current" data-gallery-zone="hall2" data-wall="2" data-count="3" aria-hidden="false">
+        <header><span>WALL 03</span><h2>印痕与网格</h2></header>
+        <div class="gallery-works">
+          <button class="gallery-art" data-full="./reference/2/IMG_3229.JPG" data-name="IMG_3229" type="button"><img src="./assets/textures/hall2-small.jpg?v=39" alt="IMG_3229 单张作品"><span>IMG_3229</span></button>
+          <button class="gallery-art" data-full="./reference/2/IMG_3231.JPG" data-name="IMG_3231" type="button"><img src="./assets/textures/hall2-cast-grid.jpg?v=39" alt="IMG_3231 单张作品"><span>IMG_3231</span></button>
+          <button class="gallery-art" data-full="./reference/2/IMG_3233.JPG" data-name="IMG_3233" type="button"><img src="./assets/textures/hall2-paper.jpg?v=39" alt="IMG_3233 单张作品"><span>IMG_3233</span></button>
+        </div>
+      </article>
+
+      <article class="gallery-wall is-current" data-gallery-zone="hall2" data-wall="3" data-count="2" aria-hidden="false">
+        <header><span>WALL 04</span><h2>切面与身体</h2></header>
+        <div class="gallery-works">
+          <button class="gallery-art" data-full="./reference/2/IMG_3236.JPG" data-name="IMG_3236" type="button"><img src="./assets/textures/hall2-redblue.jpg?v=39" alt="IMG_3236 单张作品"><span>IMG_3236</span></button>
+          <button class="gallery-art" data-full="./reference/2/IMG_3239.JPG" data-name="IMG_3239" type="button"><img src="./assets/textures/hall2-sculpture.jpg?v=39" alt="IMG_3239 单张作品"><span>IMG_3239</span></button>
+        </div>
+      </article>
+
+      <article class="gallery-wall" data-gallery-zone="hall3" data-count="13" aria-hidden="true">
+        <div class="gallery-works">
+          <button class="gallery-art" data-full="./reference/3/IMG_3287.JPG" data-name="IMG_3287" type="button"><img src="./assets/textures/hall3-abstract.jpg?v=38" alt="IMG_3287 单张作品"><span>IMG_3287</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3289.JPG" data-name="IMG_3289" type="button"><img src="./assets/textures/hall3-straps.jpg?v=38" alt="IMG_3289 单张作品"><span>IMG_3289</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3293.JPG" data-name="IMG_3293" type="button"><img src="./assets/textures/hall3-geometry.jpg?v=36" alt="IMG_3293 单张作品"><span>IMG_3293</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3295.JPG" data-name="IMG_3295" type="button"><img src="./assets/textures/hall3-vessel-dark.jpg?v=36" alt="IMG_3295 单张作品"><span>IMG_3295</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3296.JPG" data-name="IMG_3296" type="button"><img src="./assets/textures/hall3-vessel-clear.jpg?v=36" alt="IMG_3296 单张作品"><span>IMG_3296</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3297.JPG" data-name="IMG_3297" type="button"><img src="./assets/textures/hall3-vessel-blue.jpg?v=36" alt="IMG_3297 单张作品"><span>IMG_3297</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3301.JPG" data-name="IMG_3301" type="button"><img src="./assets/textures/hall3-red.jpg?v=38" alt="IMG_3301 单张作品"><span>IMG_3301</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3305.JPG" data-name="IMG_3305" type="button"><img src="./assets/textures/hall3-green.jpg?v=36" alt="IMG_3305 单张作品"><span>IMG_3305</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3307.JPG" data-name="IMG_3307" type="button"><img src="./assets/textures/hall3-bw.jpg?v=36" alt="IMG_3307 单张作品"><span>IMG_3307</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3309.JPG" data-name="IMG_3309" type="button"><img src="./assets/textures/hall3-calligraphy.jpg?v=36" alt="IMG_3309 单张作品"><span>IMG_3309</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3311.JPG" data-name="IMG_3311" type="button"><img src="./assets/textures/hall3-orange.jpg?v=37" alt="IMG_3311 单张作品"><span>IMG_3311</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3312.JPG" data-name="IMG_3312" type="button"><img src="./assets/textures/hall3-branch.jpg?v=36" alt="IMG_3312 单张作品"><span>IMG_3312</span></button>
+          <button class="gallery-art" data-full="./reference/3/IMG_3317.JPG" data-name="IMG_3317" type="button"><img src="./assets/textures/hall3-pink.jpg?v=38" alt="IMG_3317 单张作品"><span>IMG_3317</span></button>
+        </div>
+      </article>
+    </div>
+
+    <button id="thought-toggle" type="button" aria-controls="thought-panel" aria-expanded="false">
+      <span>我的感受</span><i aria-hidden="true">＋</i>
+    </button>
+
+    <aside id="thought-panel" aria-hidden="true" aria-label="当前作品的个人感受">
+      <header>
+        <div><span>当前作品</span><strong id="thought-name">IMG_3206</strong></div>
+        <button id="thought-close" type="button">收起</button>
+      </header>
+      <label for="thought-input">我的感受</label>
+      <textarea id="thought-input" maxlength="1000" placeholder="记录此刻对这件作品的感受……"></textarea>
+      <footer>
+        <span id="thought-status" role="status" aria-live="polite">自动保存在此浏览器</span>
+        <small id="thought-count">0 / 1000</small>
+      </footer>
+    </aside>
+
+    <footer class="gallery-footer">
+      <div class="gallery-pager" aria-label="作品切换">
+        <button id="gallery-prev" type="button">上一件</button>
+        <button id="gallery-next" type="button">下一件</button>
+      </div>
+      <p id="gallery-hint">点击悬浮作品或使用滚轮切换 · 方向键同样可用</p>
+    </footer>
+  </section>
+
+  <section id="artwork-detail" role="dialog" aria-modal="true" aria-labelledby="artwork-detail-title" aria-hidden="true">
+    <button id="artwork-detail-close" type="button">关闭</button>
+    <div class="artwork-detail-media">
+      <div id="artwork-detail-viewport">
+        <img id="artwork-detail-image" src="" alt="" draggable="false">
+      </div>
+      <div class="artwork-detail-zoom" aria-label="原图缩放控制">
+        <button id="artwork-zoom-out" type="button" aria-label="缩小原图">−</button>
+        <output id="artwork-zoom-level" aria-live="polite">100%</output>
+        <button id="artwork-zoom-in" type="button" aria-label="放大原图">＋</button>
+        <button id="artwork-zoom-reset" type="button">复位</button>
+      </div>
+    </div>
+    <div class="artwork-detail-copy">
+      <p id="artwork-detail-category">展品信息</p>
+      <h2 id="artwork-detail-title"></h2>
+      <p id="artwork-detail-subtitle" hidden></p>
+      <dl id="artwork-detail-meta">
+        <div><dt>艺术家</dt><dd id="artwork-detail-artist"></dd></div>
+        <div><dt>年份</dt><dd id="artwork-detail-year"></dd></div>
+        <div><dt>尺寸</dt><dd id="artwork-detail-size"></dd></div>
+        <div><dt>材料</dt><dd id="artwork-detail-medium"></dd></div>
+      </dl>
+      <p id="artwork-detail-source"></p>
+    </div>
+  </section>
+
+  <div id="loading">正在组织空间与光线</div>
+  <div id="transition" aria-hidden="true">
+    <span id="transition-index">01</span>
+    <strong id="transition-name">序厅</strong>
+    <small id="transition-mood">尺度从挑高中出现</small>
+  </div>
+
+  <script src="./assets/embedded-textures.js"></script>
+  <script src="./vendor/three.min.js"></script>
+  <script src="./app.js?v=43"></script>
+  <script src="../shared/exhibition-tools.js?v=20261001-home" data-exhibition-id="material-fields" data-exhibition-title="物·质" data-feelings="off"></script>
+</body>
+</html>
